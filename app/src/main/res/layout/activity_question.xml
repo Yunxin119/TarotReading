@@ -10,6 +10,15 @@
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="11dp">
 
+    <FrameLayout
+        android:id="@+id/buttonContainer"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="430dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <Button
         android:id="@+id/back"
@@ -21,25 +30,14 @@
         android:textColor="@color/primary"
         app:layout_constraintBottom_toTopOf="@+id/questioncontent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/cards4"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginEnd="71dp"
-        app:layout_constraintBottom_toBottomOf="@+id/cards3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cards3"
-        app:layout_constraintTop_toTopOf="@+id/cards3"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/gradient" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.035" />
 
     <TextView
         android:id="@+id/questionlabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="248dp"
+        android:layout_marginTop="240dp"
         android:fontFamily="@font/arizonia"
         android:text="What you wanna know?"
         android:textColor="@color/primary"
@@ -53,29 +51,24 @@
         android:id="@+id/questioncontent"
         android:layout_width="340dp"
         android:layout_height="0dp"
-        android:layout_marginTop="305dp"
-        android:layout_marginBottom="364dp"
+        android:layout_marginTop="295dp"
         android:background="@drawable/textarea"
         android:hint="Type your question here"
         android:textColor="@color/primary"
         android:textColorHint="#5FB6B6B6"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/questionlabel"
         app:layout_constraintStart_toStartOf="@+id/questionlabel"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/cards3"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="67dp"
-        android:layout_marginEnd="87dp"
-        android:layout_marginBottom="188dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/cards4"
-        app:layout_constraintHorizontal_bias="0.0"
+    <Button
+        android:id="@+id/ask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="364dp"
+        android:text="Ask"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/questioncontent"
-        app:srcCompat="@drawable/gradient" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
