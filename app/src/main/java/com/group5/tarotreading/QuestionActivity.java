@@ -19,6 +19,7 @@ public class QuestionActivity extends AppCompatActivity {
     ImageButton cards3;
     ImageButton cards4;
     EditText question_content;
+    Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class QuestionActivity extends AppCompatActivity {
         cards3 = findViewById(R.id.cards3);
         cards4 = findViewById(R.id.cards4);
         question_content = findViewById(R.id.questioncontent);
+        back = findViewById(R.id.back);
 
         cards3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +52,14 @@ public class QuestionActivity extends AppCompatActivity {
                 Intent intent = new Intent(QuestionActivity.this, CardPickingActivity.class);
                 intent.putExtra("question",question);
                 intent.putExtra("cardnum", cardnum);
+                startActivity(intent);
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(QuestionActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
