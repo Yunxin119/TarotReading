@@ -47,5 +47,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/askquestion"
         app:layout_constraintStart_toStartOf="parent" />
+    <!-- New Camera Button in the center -->
+    <Button
+        android:id="@+id/camera_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="Open Camera"
+        app:layout_constraintTop_toTopOf="@+id/today"
+        app:layout_constraintBottom_toBottomOf="@+id/today"
+        app:layout_constraintStart_toEndOf="@+id/today"
+        app:layout_constraintEnd_toStartOf="@+id/askquestion"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

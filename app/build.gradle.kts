@@ -32,11 +32,22 @@ android {
 }
 
 dependencies {
+    // Use the correct Kotlin DSL for defining the version
+    val cameraxVersion = "1.3.0-rc01"
 
+    implementation(libs.camerax.core)
+    implementation(libs.camerax.camera2)
+    implementation(libs.camerax.lifecycle)
+    implementation(libs.camerax.view)
+    implementation(libs.camerax.extensions)
+
+    // Existing dependencies defined using the libs catalog
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+
+    // Testing dependencies
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

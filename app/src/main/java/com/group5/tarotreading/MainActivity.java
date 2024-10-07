@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button todayfortune;
     Button askquestion;
-
+    Button cameraButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         todayfortune = findViewById(R.id.today);
         askquestion = findViewById(R.id.askquestion);
+        cameraButton = findViewById(R.id.camera_button);
 
         todayfortune.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +46,17 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
                 startActivity(intent);
             }
+        });
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+        // Set the camera button click listener
+        cameraButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, CameraActivity.class);
+            startActivity(intent);
         });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
