@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,7 @@ public class QuestionActivity extends AppCompatActivity {
     ImageButton cards4;
     EditText question_content;
     Button back;
+    Button test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class QuestionActivity extends AppCompatActivity {
         cards4 = findViewById(R.id.cards4);
         question_content = findViewById(R.id.questioncontent);
         back = findViewById(R.id.back);
+        test = findViewById(R.id.test);
 
         cards3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,5 +72,12 @@ public class QuestionActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        test.setOnClickListener(v -> {
+            Intent myIntent = new Intent(QuestionActivity.this,AIAnswerActivity.class);
+            QuestionActivity.this.startActivity(myIntent);
+
+        });
     }
+
 }
