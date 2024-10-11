@@ -18,10 +18,10 @@
         android:src="@drawable/homeimg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.548"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.491" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/askquestion"
@@ -47,5 +47,43 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/askquestion"
         app:layout_constraintStart_toStartOf="parent" />
+    <!-- New Camera Button in the center -->
+    <Button
+        android:id="@+id/camera_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="Open Camera"
+        app:layout_constraintTop_toTopOf="@+id/today"
+        app:layout_constraintBottom_toBottomOf="@+id/today"
+        app:layout_constraintStart_toEndOf="@+id/today"
+        app:layout_constraintEnd_toStartOf="@+id/askquestion"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/today"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Register Button -->
+        <Button
+            android:id="@+id/register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:layout_marginEnd="16dp" />
+
+        <!-- Login Button -->
+        <Button
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login" />
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

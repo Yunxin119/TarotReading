@@ -31,9 +31,11 @@ public class QuestionActivity extends AppCompatActivity {
 
     EditText question_content;
     Button back;
+
     Button ask;
     String prompt;
     FrameLayout buttonContainer;
+    Button test;
 
 
     @Override
@@ -44,8 +46,10 @@ public class QuestionActivity extends AppCompatActivity {
 
         question_content = findViewById(R.id.questioncontent);
         back = findViewById(R.id.back);
+
         ask = findViewById(R.id.ask);
         buttonContainer = findViewById(R.id.buttonContainer);
+        test = findViewById(R.id.test);
 
 
         ask.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +78,14 @@ public class QuestionActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        test.setOnClickListener(v -> {
+            Intent myIntent = new Intent(QuestionActivity.this,AIAnswerActivity.class);
+            QuestionActivity.this.startActivity(myIntent);
+
+        });
     }
+
 
     // 生成内容并处理 Gemini AI 的 API 请求
     void generateContent(String question) {
@@ -175,5 +186,6 @@ public class QuestionActivity extends AppCompatActivity {
 
     }
 }
+
 
 
