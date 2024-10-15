@@ -143,7 +143,6 @@ public class AIAnswerActivity extends AppCompatActivity {
             }
         });
 
-        // adding the request to the queue.
         queue.add(postRequest);
     }
 }

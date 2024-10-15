@@ -2,6 +2,7 @@ package com.group5.tarotreading;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     Button todayfortune;
     Button askquestion;
     Button cameraButton;
-    Button eregister,elogin;
+    Button eregister,elogin, logout;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,21 @@ public class MainActivity extends AppCompatActivity {
         // Login/Register Button
         eregister = findViewById(R.id.register);
         elogin= findViewById(R.id.login);
+        logout = findViewById(R.id.logout);
 
+        //check login status
+        SharedPreferences preferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        boolean isLoggedIn = preferences.getBoolean("isLoggedIn", false);
+
+        if (isLoggedIn) {
+            elogin.setVisibility(View.GONE);
+            eregister.setVisibility(View.GONE);
+            logout.setVisibility(View.VISIBLE);
+        } else {
+            elogin.setVisibility(View.VISIBLE);
+            eregister.setVisibility(View.VISIBLE);
+            logout.setVisibility(View.GONE);
+        }
 
         todayfortune.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +95,16 @@ public class MainActivity extends AppCompatActivity {
         elogin.setOnClickListener(v -> {
             Intent myIntent = new Intent(MainActivity.this,LoginActivity.class);
             MainActivity.this.startActivity(myIntent);
+        });
+
+        logout.setOnClickListener(v -> {
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("isLoggedIn", false);
+            editor.apply();
+
+            elogin.setVisibility(View.VISIBLE);
+            eregister.setVisibility(View.VISIBLE);
+            logout.setVisibility(View.GONE);
         });
     }
 }
