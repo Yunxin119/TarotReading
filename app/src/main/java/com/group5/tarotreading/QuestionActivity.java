@@ -74,9 +74,14 @@ public class QuestionActivity extends AppCompatActivity {
         });
 
         test.setOnClickListener(v -> {
-            Intent myIntent = new Intent(QuestionActivity.this,AIAnswerActivity.class);
-            QuestionActivity.this.startActivity(myIntent);
-
+            String question = question_content.getText().toString();
+            if (!question.isEmpty()) {
+                Intent myIntent = new Intent(QuestionActivity.this, AIAnswerActivity.class);
+                myIntent.putExtra("question", question);
+                QuestionActivity.this.startActivity(myIntent);
+            } else {
+                Toast.makeText(QuestionActivity.this, "Please enter a question.", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
