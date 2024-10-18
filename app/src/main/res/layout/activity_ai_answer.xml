@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/back_color"
+    android:background="@drawable/answer"
     tools:context=".AIAnswerActivity">
 
     <ScrollView
@@ -52,6 +52,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="5dp"
         android:hint="Enter your query"
+        android:visibility="gone"
         android:padding="5dp"
         android:textColorHint="@color/white"
         app:hintTextColor="@color/white">
