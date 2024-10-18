@@ -4,8 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login"
+    android:background="@color/background"
     tools:context=".RegisterActivity">
+
+    <ImageView
+        android:layout_width="500dp"
+        android:layout_height="500dp"
+        android:layout_alignParentBottom="true"
+        android:alpha="0.8"
+        android:scaleType="centerCrop"
+        android:src="@drawable/login_bg" />
 
     <TextView
         android:layout_width="match_parent"
@@ -20,7 +28,7 @@
         android:layout_marginBottom="25dp"
         android:gravity="center"
         android:text="Register"
-        android:textColor="@color/black"
+        android:textColor="@color/primary"
         android:textSize="35dp"
         android:textStyle="bold" />
 
@@ -29,14 +37,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/username"
         android:layout_below="@+id/register"
-
-
         android:hint="Username"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black"
+        android:textColorHint="@color/hint"
+        android:textColor="@color/primary"
         android:layout_margin="10dp"
         android:padding="20dp"
         android:drawableLeft="@drawable/ic_baseline_person_24"
+        android:drawableTint="@color/primary"
+        android:background="@drawable/textarea"
         android:drawablePadding="5dp"
         />
 
@@ -45,14 +53,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/email"
         android:layout_below="@+id/username"
-
-
+        android:textColorHint="@color/hint"
+        android:textColor="@color/primary"
         android:hint="Email"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black"
         android:layout_margin="10dp"
         android:padding="20dp"
         android:drawableLeft="@drawable/ic_baseline_email_24"
+        android:drawableTint="@color/primary"
+        android:background="@drawable/textarea"
         android:drawablePadding="5dp"
         />
 
@@ -61,13 +69,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/password"
         android:layout_below="@+id/email"
-
         android:hint="Password"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black"
+        android:textColorHint="@color/hint"
+        android:textColor="@color/primary"
         android:layout_margin="10dp"
         android:padding="20dp"
         android:drawableLeft="@drawable/ic_baseline_lock_24"
+        android:drawableTint="@color/primary"
+        android:background="@drawable/textarea"
         android:drawablePadding="5dp"
         />
 
@@ -77,14 +86,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/password"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/design_default_color_on_secondary"
+        android:layout_margin="15dp"
+        android:padding="@android:dimen/app_icon_size"
+        android:backgroundTint="@android:color/transparent"
         android:text="Register" />
+
 
     <Button
         android:id="@+id/loginbutton"
@@ -96,7 +102,7 @@
         android:background="?android:attr/selectableItemBackground"
         android:layout_marginTop="16dp"
         android:text="Already have an account? Login"
-        android:textColor="@color/black"
+        android:textColor="@color/hint"
         android:textStyle="bold" />
 
 </RelativeLayout>
