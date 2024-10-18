@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     Button todayfortune;
     Button askquestion;
     Button cameraButton;
-    Button eregister,elogin, logout;
+    Button eregister,logout;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Login/Register Button
         eregister = findViewById(R.id.register);
-        elogin= findViewById(R.id.login);
         logout = findViewById(R.id.logout);
 
         //check login status
@@ -42,12 +41,8 @@ public class MainActivity extends AppCompatActivity {
         boolean isLoggedIn = preferences.getBoolean("isLoggedIn", false);
 
         if (isLoggedIn) {
-            elogin.setVisibility(View.GONE);
-            eregister.setVisibility(View.GONE);
             logout.setVisibility(View.VISIBLE);
         } else {
-            elogin.setVisibility(View.VISIBLE);
-            eregister.setVisibility(View.VISIBLE);
             logout.setVisibility(View.GONE);
         }
 
@@ -86,24 +81,21 @@ public class MainActivity extends AppCompatActivity {
 
         // register button
         eregister.setOnClickListener(v -> {
-            Intent myIntent = new Intent(MainActivity.this,RegisterActivity.class);
-            MainActivity.this.startActivity(myIntent);
+            if (isLoggedIn) {
+                Intent myIntent = new Intent(MainActivity.this, UserProfile.class);
+                MainActivity.this.startActivity(myIntent);
+            } else {
+                Intent myIntent = new Intent(MainActivity.this,LoginActivity.class);
+                MainActivity.this.startActivity(myIntent);
+            }
 
         });
 
-        // login button
-        elogin.setOnClickListener(v -> {
-            Intent myIntent = new Intent(MainActivity.this,LoginActivity.class);
-            MainActivity.this.startActivity(myIntent);
-        });
 
         logout.setOnClickListener(v -> {
             SharedPreferences.Editor editor = preferences.edit();
             editor.putBoolean("isLoggedIn", false);
             editor.apply();
-
-            elogin.setVisibility(View.VISIBLE);
-            eregister.setVisibility(View.VISIBLE);
             logout.setVisibility(View.GONE);
         });
     }
