@@ -49,6 +49,7 @@ android {
     }
 }
 
+
 dependencies {
     // Use the correct Kotlin DSL for defining the version
     val cameraxVersion = "1.3.0-rc01"
@@ -69,22 +70,24 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-
-    // Firebase BOM & Analytics
+    // Firebase
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
     implementation("com.google.firebase:firebase-analytics")
-
-    // Firestore
-    // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-firestore")
 
-    // Open-AI
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("com.squareup.okhttp3:okhttp:4.9.0")
-    implementation("com.google.code.gson:gson:2.8.6")
+    // Networking
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.gson)
+    implementation(libs.okhttp)
+    implementation(libs.gson)
 
-    // volley library
+    // Google AI
+    implementation("com.google.ai.client.generativeai:generativeai:0.7.0")
+    implementation("com.google.guava:guava:31.0.1-android")
+    implementation("org.reactivestreams:reactive-streams:1.0.4")
+
+    // Volley
     implementation("com.android.volley:volley:1.2.0")
 
 }
+
