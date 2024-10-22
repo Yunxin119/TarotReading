@@ -128,6 +128,8 @@ public class QuestionActivity extends AppCompatActivity {
         nextButton.setOnClickListener(view -> {
             Intent intent = new Intent(QuestionActivity.this, CardPickingActivity.class);
             intent.putExtra("spreadType", spreadType);
+            String question = question_content.getText().toString().trim();
+            intent.putExtra("question", question);
             int pickcard;
             Boolean cutcard = false;
             switch (spreadType.toLowerCase()) {

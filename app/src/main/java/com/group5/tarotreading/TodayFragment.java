@@ -19,8 +19,10 @@ public class TodayFragment extends Fragment {
         Button todayButton = view.findViewById(R.id.today);
         todayButton.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), CardPickingActivity.class);
-            intent.putExtra("cardnum", 1);
+            intent.putExtra("spreadType", "onecard");
             intent.putExtra("question", "Tell me today's fortune, give me suggestion");
+            intent.putExtra("pickcard", 1);
+            intent.putExtra("cutcard", false);
             startActivity(intent);
         });
 
