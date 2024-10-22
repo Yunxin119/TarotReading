@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "567529771102",
+    "project_id": "tarotreading-f9e14",
+    "storage_bucket": "tarotreading-f9e14.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:567529771102:android:80de7a1e62d7939d2d64cf",
+        "android_client_info": {
+          "package_name": "com.group5.tarotreading"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnOHEEqJeJcr73cwAoIfeV5Y8mgbNPqis"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
