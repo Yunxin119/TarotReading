@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
     <!-- camera and audio permissions -->
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- Specify that the camera hardware is not required (but preferred) -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" /><!-- Specify that the camera hardware is not required (but preferred) -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" /> <!-- permissions for INTERNET -->
@@ -47,6 +48,7 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".AIAnswerActivity" />
+        <activity android:name=".ChangePasswordActivity" />
     </application>
 
 </manifest>
