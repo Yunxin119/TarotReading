@@ -28,7 +28,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
     EditText username, password;
-    Button eregister, elogin;
+    Button eregister, elogin, home;
     private TextView textView;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
 
         eregister = findViewById(R.id.register);
         elogin = findViewById(R.id.login);
+        home = findViewById(R.id.home);
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
 
@@ -78,6 +79,15 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // home button
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     // Method to validate login credentials
@@ -102,21 +112,30 @@ public class LoginActivity extends AppCompatActivity {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 // login successfully
                                 // should return here
+                                String email = document.getString("email");
+                                String name = document.getString("username");
+                                String userId = document.getId();
+
                                 Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
 
                                 SharedPreferences preferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
                                 SharedPreferences.Editor editor = preferences.edit();
                                 editor.putBoolean("isLoggedIn", true);
+                                editor.putString("username", name);
+                                editor.putString("email", email);
+                                editor.putString("userId", userId);
                                 editor.apply();
 
-                                Intent in = new Intent(LoginActivity.this, MainActivity.class);
+                                Intent in = new Intent(LoginActivity.this, UserProfile.class);
+                                in.putExtra("username", name);
+                                in.putExtra("email", email);
+                                in.putExtra("userId", userId);
                                 startActivity(in);
                                 finish();
                             }
-                            // login failed, unable to find matched record
-                            Toast.makeText(LoginActivity.this, "Can't find the email or password!", Toast.LENGTH_SHORT).show();
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
+                            Toast.makeText(LoginActivity.this, "Can't find the email or password!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

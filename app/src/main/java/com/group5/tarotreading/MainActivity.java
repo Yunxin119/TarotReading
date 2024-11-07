@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     Button todayfortune;
     Button askquestion;
     Button cameraButton;
-    Button eregister,logout;
+    Button eregister;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,17 +34,11 @@ public class MainActivity extends AppCompatActivity {
 
         // Login/Register Button
         eregister = findViewById(R.id.register);
-        logout = findViewById(R.id.logout);
 
         //check login status
         SharedPreferences preferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
         boolean isLoggedIn = preferences.getBoolean("isLoggedIn", false);
 
-        if (isLoggedIn) {
-            logout.setVisibility(View.VISIBLE);
-        } else {
-            logout.setVisibility(View.GONE);
-        }
 
         todayfortune.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,12 +85,5 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-
-        logout.setOnClickListener(v -> {
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putBoolean("isLoggedIn", false);
-            editor.apply();
-            logout.setVisibility(View.GONE);
-        });
     }
 }
