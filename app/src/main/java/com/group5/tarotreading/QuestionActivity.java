@@ -2,7 +2,11 @@ package com.group5.tarotreading;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -52,7 +57,7 @@ public class QuestionActivity extends AppCompatActivity {
                         "LoverCross: Prioritize this spread for romantic relationship inquiries, especially involving relationship development or breakups. Example Questions: \"How will my romantic relationship evolve?\", \"Should I end things with my partner?\"\n" +
                         "LoverBack: This spread takes priority when the user asks specific questions about their ex, such as reconciliation or how their ex feels about them. Example Questions: \"Will I get back together with my ex?\", \"What does my ex think of me?\"\n" +
                         "TimeFlow: Use this spread when the user wants to understand how a situation will progress over time. It’s best applied to scenarios that have already begun but are ongoing. Example Questions: \"How will my current job progress?\", \"I had a fight with my friend—how will things unfold?\""
-                        + "Please ONLY give ONE WORD of one choice you think most suitable AND NOTHING ELSE";
+                        + "Please ONLY give ONE WORD of one choice you think most suitable AND NOTHING ELSE and the world should be capitalized, for example: Timeflow";
 
                 openAIHelper.generateResponse(prompt, new OpenAIHelper.AIResponseListener() {
                     @Override
@@ -102,20 +107,29 @@ public class QuestionActivity extends AppCompatActivity {
 
     void createProceedButton(String spreadType) {
         Button nextButton = new Button(QuestionActivity.this);
-        String str = spreadType.substring(0,1).toUpperCase() + spreadType.substring(1).toLowerCase();
+        String spreadTypeFormatted = spreadType.toLowerCase();
 
+        String str = spreadTypeFormatted.substring(0, 1).toUpperCase() + spreadTypeFormatted.substring(1);
+
+        nextButton.setAllCaps(false);
         nextButton.setText(str);
-
+        nextButton.setBackgroundResource(R.drawable.popoutbtn);
+        Typeface customTypeface = ResourcesCompat.getFont(this, R.font.satisfyregular);
+        nextButton.setTypeface(customTypeface);
+        nextButton.setTextSize(30);
+        nextButton.setTextColor(getResources().getColor(R.color.white));
         FrameLayout.LayoutParams buttonLayoutParams = new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.WRAP_CONTENT,
                 FrameLayout.LayoutParams.WRAP_CONTENT
         );
-        buttonLayoutParams.gravity = android.view.Gravity.CENTER;
+        buttonLayoutParams.gravity = Gravity.CENTER;
         nextButton.setLayoutParams(buttonLayoutParams);
 
         nextButton.setOnClickListener(view -> {
             Intent intent = new Intent(QuestionActivity.this, CardPickingActivity.class);
             intent.putExtra("spreadType", spreadType);
+            String question = question_content.getText().toString().trim();
+            intent.putExtra("question", question);
             int pickcard;
             Boolean cutcard = false;
             switch (spreadType.toLowerCase()) {

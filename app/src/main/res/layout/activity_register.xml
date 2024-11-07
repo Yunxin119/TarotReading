@@ -7,13 +7,20 @@
     android:background="@color/background"
     tools:context=".RegisterActivity">
 
+<!--    <ImageView-->
+<!--        android:layout_width="500dp"-->
+<!--        android:layout_height="500dp"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:alpha="0.8"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        android:src="@drawable/login_bg" />-->
+
     <ImageView
-        android:layout_width="500dp"
-        android:layout_height="500dp"
+        android:layout_width="match_parent"
+        android:layout_height="390dp"
         android:layout_alignParentBottom="true"
-        android:alpha="0.8"
-        android:scaleType="centerCrop"
-        android:src="@drawable/login_bg" />
+        android:layout_marginBottom="6dp"
+        android:src="@drawable/cloud3" />
 
     <TextView
         android:layout_width="match_parent"
@@ -23,10 +30,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="25dp"
         android:gravity="center"
+        android:fontFamily="@font/satisfyregular"
         android:text="Register"
         android:textColor="@color/primary"
         android:textSize="35dp"
@@ -86,7 +94,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/password"
         android:layout_centerHorizontal="true"
-        android:layout_margin="15dp"
+        android:layout_margin="8dp"
+        android:fontFamily="@font/satisfyregular"
+        android:textSize="30dp"
         android:padding="@android:dimen/app_icon_size"
         android:backgroundTint="@android:color/transparent"
         android:text="Register" />
@@ -101,8 +111,8 @@
         android:layout_centerHorizontal="true"
         android:background="?android:attr/selectableItemBackground"
         android:layout_marginTop="16dp"
-        android:text="Already have an account? Login"
-        android:textColor="@color/hint"
+        android:text="Already have an account?"
+        android:textColor="@color/white"
         android:textStyle="bold" />
 
     <Button

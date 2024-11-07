@@ -2,9 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="background">#17153B</color>
-    <color name="primary">#C8ACD6</color>
-    <color name="hint">#6B6270</color>
+    <color name="background">#292C45</color>
+    <color name="primary">#D4C17D</color>
+    <color name="hint">#877F63</color>
     <color name="edt_back_color">#D3D3D3</color>
     <color name="back_color">#000000</color>
     <color name="red">#FF0000</color>

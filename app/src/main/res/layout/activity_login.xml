@@ -6,13 +6,20 @@
     android:background="@color/background"
     tools:context=".LoginActivity">
 
+<!--    <ImageView-->
+<!--        android:layout_width="500dp"-->
+<!--        android:layout_height="500dp"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:alpha="0.8"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        android:src="@drawable/login_bg" />-->
+
     <ImageView
-        android:layout_width="500dp"
-        android:layout_height="500dp"
+        android:layout_width="match_parent"
+        android:layout_height="390dp"
         android:layout_alignParentBottom="true"
-        android:alpha="0.8"
-        android:scaleType="centerCrop"
-        android:src="@drawable/login_bg" />
+        android:layout_marginBottom="6dp"
+        android:src="@drawable/cloud1" />
 
     <TextView
         android:id="@+id/signin"
@@ -21,6 +28,7 @@
         android:text="Sign.in"
         android:textColor="@color/primary"
         android:textSize="35dp"
+        android:fontFamily="@font/satisfyregular"
         android:layout_margin="50dp"
         android:gravity="center"
         android:textStyle="bold"
@@ -64,11 +72,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/forget"
+        android:textSize="30dp"
+        android:fontFamily="@font/satisfyregular"
         android:layout_centerHorizontal="true"
-        android:layout_margin="15dp"
+        android:layout_margin="8dp"
         android:padding="@android:dimen/app_icon_size"
         android:backgroundTint="@android:color/transparent"
-        android:text="LOGIN" />
+        android:text="Login" />
 
     <TextView
         android:id="@+id/forget"
@@ -83,7 +93,6 @@
         android:textColor="@color/hint"
         android:text="Forget Password?" />
 
-
     <Button
         android:id="@+id/register"
         android:layout_width="wrap_content"
@@ -94,7 +103,7 @@
         android:layout_marginTop="10dp"
         android:background="?android:attr/selectableItemBackground"
         android:text="Need an Account? Sign up"
-        android:textColor="@color/hint"
+        android:textColor="@color/white"
         android:textStyle="bold"/>
 
     <Button
