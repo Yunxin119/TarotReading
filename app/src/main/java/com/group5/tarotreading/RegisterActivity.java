@@ -2,6 +2,7 @@ package com.group5.tarotreading;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -20,7 +21,7 @@ import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
     EditText eusername, eemail, epassword;
-    Button register, login;
+    Button register, login, home;
     boolean isAllFields = false;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -29,6 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private CollectionReference collectionReference = db.collection("Tarot-Reading");
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
         epassword = findViewById(R.id.password);
         register = findViewById(R.id.regibutton);
         login = findViewById(R.id.loginbutton);
+        home = findViewById(R.id.home);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +68,15 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent loginIntent = new Intent(RegisterActivity.this,LoginActivity.class);
                 startActivity(loginIntent);
+            }
+        });
+
+        // home button
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }

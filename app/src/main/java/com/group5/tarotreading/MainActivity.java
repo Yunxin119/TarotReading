@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private int currentFragmentIndex = 0;
     Button cameraButton;
+
     Button eregister, logout;
     ImageView imageView;
 
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         cameraButton = findViewById(R.id.camera_button);
         eregister = findViewById(R.id.register);
+
         logout = findViewById(R.id.logout);
         imageView = findViewById(R.id.imageView);
         imageView.setZ(-1);
@@ -46,11 +48,6 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
         boolean isLoggedIn = preferences.getBoolean("isLoggedIn", false);
 
-        if (isLoggedIn) {
-            logout.setVisibility(View.VISIBLE);
-        } else {
-            logout.setVisibility(View.GONE);
-        }
 
         // Set up left and right buttons for fragment switching
         Button leftButton = findViewById(R.id.leftButton);
@@ -76,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         // Logout button click listener
         logout.setOnClickListener(v -> {
             SharedPreferences.Editor editor = preferences.edit();
@@ -90,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
     }
 
     private void showPreviousFragment() {
