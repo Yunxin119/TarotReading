@@ -60,7 +60,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
     }
 
     private void verifyCurrentPassword(String currentPassword, String newPassword) {
-        DocumentReference userDocRef = db.collection("Tarot-Reading").document("Users").collection("UserDetails").document(userId);
+        DocumentReference userDocRef = db.collection("Tarot-Reading").document(userId);
         userDocRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -84,7 +84,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
     }
 
     private void updatePassword(String newPassword) {
-        DocumentReference userDocRef = db.collection("Tarot-Reading").document("Users").collection("UserDetails").document(userId);
+        DocumentReference userDocRef = db.collection("Tarot-Reading").document(userId);
         userDocRef.update("password", newPassword)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
