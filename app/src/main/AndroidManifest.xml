@@ -49,6 +49,7 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".AIAnswerActivity" />
         <activity android:name=".ChangePasswordActivity" />
+        <activity android:name=".AnswerPage" />
     </application>
 
 </manifest>
