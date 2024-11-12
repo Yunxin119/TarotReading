@@ -31,7 +31,7 @@
             android:name=".ResultActivity"
             android:exported="false" />
         <activity
-            android:name=".CardPickingActivity"
+            android:name=".CardPickActivity"
             android:exported="false" />
         <activity
             android:name=".QuestionActivity"

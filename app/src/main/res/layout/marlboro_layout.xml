@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/card1"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_margin="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="500dp"
+        android:background="@drawable/card_border"
+        app:layout_constraintTop_toBottomOf="@id/card2"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/card2"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_margin="50dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/card_border"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.259" />
+
+    <ImageView
+        android:id="@+id/card3"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/card_border"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="100dp" />
+
+
+    <ImageView
+        android:id="@+id/card4"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_margin="5dp"
+
+        android:background="@drawable/card_border"
+        app:layout_constraintStart_toEndOf="@id/card3"
+
+        app:layout_constraintTop_toBottomOf="@id/card3" />
+
+    <ImageView
+        android:id="@+id/card5"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/card_border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card4"
+        android:layout_marginBottom="64dp"
+        android:layout_marginEnd="32dp" />
+
+    <ImageView
+        android:id="@+id/cutCard"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="16dp"
+
+        android:background="@drawable/card_border"
+        app:layout_constraintBottom_toBottomOf="@id/card5"
+        app:layout_constraintEnd_toStartOf="@id/card5"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toEndOf="@id/card1" />
+
+    <Button
+        android:id="@+id/myButton"
+        android:layout_width="109dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="0dp"
+        android:text="Analyze"
+        app:layout_constraintEnd_toEndOf="@id/cutCard"
+        app:layout_constraintStart_toStartOf="@id/cutCard"
+        app:layout_constraintTop_toBottomOf="@id/cutCard" />
+
+    <com.group5.tarotreading.CardPickView
+        android:id="@+id/cardPickView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

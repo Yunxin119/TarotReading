@@ -7,7 +7,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ImageView;
 import androidx.camera.core.ImageProxy;
@@ -16,6 +18,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.View;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageCapture;
@@ -32,16 +35,16 @@ import java.io.File;
 import java.util.concurrent.ExecutionException;
 
 public class CameraActivity extends AppCompatActivity {
-
     private PreviewView previewView;
     private ImageView capturedImageView;
     private ImageCapture imageCapture;
     private CameraSelector cameraSelector;
-    private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
     private ProcessCameraProvider cameraProvider;
+
     private Button captureButton, switchCameraButton, analyzeButton, backButton;
     private boolean isBackCamera = true; // Track the selected camera
     private boolean isPreviewMode = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,15 +53,18 @@ public class CameraActivity extends AppCompatActivity {
         setupInitialButtonStates();
 
 
-        // Check permissions
+
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 101);
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA}, 101);
         } else {
             startCamera();
         }
         setupButtonListeners();
     }
+
 
     private void initializeViews() {
         previewView = findViewById(R.id.previewView);
@@ -152,8 +158,10 @@ public class CameraActivity extends AppCompatActivity {
         analyzeButton.setVisibility(View.INVISIBLE);
         startCamera(); // Restart camera preview
     }
+
     private void startCamera() {
-        cameraProviderFuture = ProcessCameraProvider.getInstance(this);
+        ListenableFuture<ProcessCameraProvider> cameraProviderFuture =
+                ProcessCameraProvider.getInstance(this);
         cameraProviderFuture.addListener(() -> {
             try {
                 cameraProvider = cameraProviderFuture.get();
@@ -165,7 +173,7 @@ public class CameraActivity extends AppCompatActivity {
     }
 
     private void bindCameraPreview(@NonNull ProcessCameraProvider cameraProvider) {
-        Preview preview = getBuild();
+        Preview preview = new Preview.Builder().build();
         cameraSelector = new CameraSelector.Builder()
                 .requireLensFacing(isBackCamera ? CameraSelector.LENS_FACING_BACK : CameraSelector.LENS_FACING_FRONT)
                 .build();
@@ -177,22 +185,38 @@ public class CameraActivity extends AppCompatActivity {
         cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture);
     }
 
+
     private static @NonNull Preview getBuild() {
         return new Preview.Builder().build();
     }
 
 
 
+
     private void switchCamera() {
         isBackCamera = !isBackCamera;
         cameraSelector = new CameraSelector.Builder()
-                .requireLensFacing(isBackCamera ? CameraSelector.LENS_FACING_BACK : CameraSelector.LENS_FACING_FRONT)
+                .requireLensFacing(isBackCamera ?
+                        CameraSelector.LENS_FACING_BACK : CameraSelector.LENS_FACING_FRONT)
                 .build();
-        bindCameraPreview(cameraProvider);  // Rebind camera with new selector
+        bindCameraPreview(cameraProvider);
+    }
+
+    private void showAnalysisResults(String results) {
+        new AlertDialog.Builder(this)
+                .setTitle("Card Analysis Results")
+                .setMessage(results)
+                .setPositiveButton("OK", null)
+                .show();
+    }
+
+    public void setSpreadType(String spreadType) {
+        this.selectedSpreadType = spreadType;
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 101) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {

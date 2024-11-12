@@ -126,8 +126,10 @@ public class QuestionActivity extends AppCompatActivity {
         nextButton.setLayoutParams(buttonLayoutParams);
 
         nextButton.setOnClickListener(view -> {
+
 //            Intent intent = new Intent(QuestionActivity.this, CardPickingActivity.class);
             Intent intent = new Intent(QuestionActivity.this, AnswerPage.class);
+
             intent.putExtra("spreadType", spreadType);
             String question = question_content.getText().toString().trim();
             intent.putExtra("question", question);
