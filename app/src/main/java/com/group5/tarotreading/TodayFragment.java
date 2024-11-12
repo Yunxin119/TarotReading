@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.group5.tarotreading.cardActivity.CardPickActivity;
+
 public class TodayFragment extends Fragment {
     @Nullable
     @Override
@@ -19,10 +21,10 @@ public class TodayFragment extends Fragment {
         Button todayButton = view.findViewById(R.id.today);
         todayButton.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), CardPickActivity.class);
-            intent.putExtra("spreadType", "onecard");
+            intent.putExtra("spreadType", "ONECARD");
             intent.putExtra("question", "Tell me today's fortune, give me suggestion");
-            intent.putExtra("pickcard", 1);
-            intent.putExtra("cutcard", false);
+            intent.putExtra("pickCard", 1);
+            intent.putExtra("cutCard", false);
             startActivity(intent);
         });
 

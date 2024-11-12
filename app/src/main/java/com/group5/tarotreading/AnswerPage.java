@@ -8,8 +8,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.group5.tarotreading.utils.OpenAIHelper;
 
 import java.util.HashMap;
 

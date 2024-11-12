@@ -1,4 +1,4 @@
-package com.group5.tarotreading;
+package com.group5.tarotreading.userProfile;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -6,7 +6,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.View;
 import android.Manifest;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,6 +19,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.group5.tarotreading.R;
 
 public class UserProfile extends AppCompatActivity {
     private SharedPreferences preferences;

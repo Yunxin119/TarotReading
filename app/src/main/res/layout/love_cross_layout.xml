@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
+    <include
+        android:id="@+id/base_layout"
+        layout="@layout/activity_card_pick" />
     <ImageView
         android:id="@+id/card1"
         android:layout_width="100dp"
@@ -70,7 +72,8 @@
         app:layout_constraintStart_toStartOf="@id/card5"
         app:layout_constraintTop_toBottomOf="@id/card5" />
 
-    <com.group5.tarotreading.CardPickView
+
+    <com.group5.tarotreading.cardActivity.CardPickView
         android:id="@+id/cardPickView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

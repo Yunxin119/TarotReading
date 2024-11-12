@@ -1,4 +1,4 @@
-package com.group5.tarotreading;
+package com.group5.tarotreading.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;

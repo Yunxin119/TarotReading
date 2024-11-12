@@ -23,7 +23,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".UserProfile"
+            android:name=".userProfile.UserProfile"
             android:exported="false" />
         <!-- activities -->
         <activity android:name=".CameraActivity" />
@@ -31,7 +31,7 @@
             android:name=".ResultActivity"
             android:exported="false" />
         <activity
-            android:name=".CardPickActivity"
+            android:name=".cardActivity.CardPickActivity"
             android:exported="false" />
         <activity
             android:name=".QuestionActivity"
@@ -45,10 +45,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".userProfile.RegisterActivity" />
+        <activity android:name=".userProfile.LoginActivity" />
         <activity android:name=".AIAnswerActivity" />
-        <activity android:name=".ChangePasswordActivity" />
+        <activity android:name=".userProfile.ChangePasswordActivity" />
         <activity android:name=".AnswerPage" />
     </application>
 

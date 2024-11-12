@@ -1,4 +1,4 @@
-package com.group5.tarotreading;
+package com.group5.tarotreading.cardActivity;
 
 import android.graphics.Bitmap;
 import android.graphics.Matrix;

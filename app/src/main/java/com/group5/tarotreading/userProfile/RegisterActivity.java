@@ -1,4 +1,4 @@
-package com.group5.tarotreading;
+package com.group5.tarotreading.userProfile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,6 +15,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.group5.tarotreading.MainActivity;
+import com.group5.tarotreading.R;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -55,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     String a= eusername.getText().toString();
                     String b = epassword.getText().toString();
-                    Intent i = new Intent(RegisterActivity.this,MainActivity.class);
+                    Intent i = new Intent(RegisterActivity.this, MainActivity.class);
                     i.putExtra("number1",a);
                     i.putExtra("number2",b);
                     startActivity(i);
@@ -66,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent loginIntent = new Intent(RegisterActivity.this,LoginActivity.class);
+                Intent loginIntent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(loginIntent);
             }
         });

@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
+    <include
+        android:id="@+id/base_layout"
+        layout="@layout/activity_card_pick" />
     <ImageView
         android:id="@+id/card1"
         android:layout_width="100dp"
@@ -74,7 +76,7 @@
         app:layout_constraintTop_toBottomOf="@id/card1" />
 
 
-    <com.group5.tarotreading.CardPickView
+    <com.group5.tarotreading.cardActivity.CardPickView
         android:id="@+id/cardPickView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -83,5 +85,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+    <Button
+        android:id="@+id/back_button"
+        android:layout_width="109dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="0dp"
+        android:text="Back"
+        app:layout_constraintEnd_toEndOf="@id/myButton"
+        app:layout_constraintStart_toStartOf="@id/myButton"
+        app:layout_constraintTop_toBottomOf="@id/myButton"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

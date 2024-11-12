@@ -1,4 +1,4 @@
-package com.group5.tarotreading;
+package com.group5.tarotreading.cardActivity;
 
 import android.content.Context;
 import android.content.res.AssetManager;

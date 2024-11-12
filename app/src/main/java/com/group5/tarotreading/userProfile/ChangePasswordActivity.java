@@ -1,4 +1,4 @@
-package com.group5.tarotreading;
+package com.group5.tarotreading.userProfile;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.group5.tarotreading.R;
 
 public class ChangePasswordActivity extends AppCompatActivity {
     private EditText currentPasswordET, newPasswordET;
