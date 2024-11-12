@@ -3,16 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login"
+    android:background="@color/background"
     tools:context=".LoginActivity">
+
+<!--    <ImageView-->
+<!--        android:layout_width="500dp"-->
+<!--        android:layout_height="500dp"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:alpha="0.8"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        android:src="@drawable/login_bg" />-->
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="390dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="6dp"
+        android:src="@drawable/cloud1" />
 
     <TextView
         android:id="@+id/signin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Sign.in"
-        android:textColor="@color/black"
+        android:textColor="@color/primary"
         android:textSize="35dp"
+        android:fontFamily="@font/satisfyregular"
         android:layout_margin="50dp"
         android:gravity="center"
         android:textStyle="bold"
@@ -23,12 +39,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/signin"
-        android:hint="Username"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black"
+        android:hint="Email"
+        android:textColorHint="@color/hint"
+        android:textColor="@color/primary"
         android:layout_margin="10dp"
         android:padding="20dp"
         android:drawableLeft="@drawable/ic_baseline_person_24"
+        android:drawableTint="@color/primary"
+        android:background="@drawable/textarea"
         android:drawablePadding="5dp"
         />
 
@@ -38,11 +56,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/username"
         android:hint="Password"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black"
+        android:textColorHint="@color/hint"
+        android:background="@drawable/textarea"
+        android:textColor="@color/primary"
         android:layout_margin="10dp"
         android:padding="20dp"
         android:drawableLeft="@drawable/ic_baseline_lock_24"
+        android:drawableTint="@color/primary"
         android:drawablePadding="5dp"
         />
 
@@ -52,16 +72,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/forget"
-        android:layout_alignRight="@id/forget"
+        android:textSize="30dp"
+        android:fontFamily="@font/satisfyregular"
         android:layout_centerHorizontal="true"
-        android:layout_margin="5dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/design_default_color_on_secondary"
-        android:text="LOGIN" />
+        android:layout_margin="8dp"
+        android:padding="@android:dimen/app_icon_size"
+        android:backgroundTint="@android:color/transparent"
+        android:text="Login" />
 
     <TextView
         android:id="@+id/forget"
@@ -73,8 +90,8 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
+        android:textColor="@color/hint"
         android:text="Forget Password?" />
-
 
     <Button
         android:id="@+id/register"
@@ -86,8 +103,16 @@
         android:layout_marginTop="10dp"
         android:background="?android:attr/selectableItemBackground"
         android:text="Need an Account? Sign up"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="275dp"
+        android:background="@android:color/transparent"
+        android:text="Home" />
 
 
 </RelativeLayout>

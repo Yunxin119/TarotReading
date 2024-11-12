@@ -24,7 +24,6 @@ import com.group5.tarotreading.BuildConfig;
 
 public class AIAnswerActivity extends AppCompatActivity {
 
-    // creating variables.
     TextView responseTV;
     TextView questionTV;
     TextInputEditText queryEdt;
@@ -38,12 +37,18 @@ public class AIAnswerActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_ai_answer);
 
-            // initializing variables.
             responseTV = findViewById(R.id.idTVResponse);
             questionTV = findViewById(R.id.idTVQuestion);
             queryEdt = findViewById(R.id.idEdtQuery);
 
-            // adding editor action listener for edit text.
+            String question = getIntent().getStringExtra("question");
+            if (question != null && !question.isEmpty()) {
+                queryEdt.setText(question);
+                questionTV.setText(question);
+
+                getResponse(question);
+            }
+
             queryEdt.setOnEditorActionListener((v, actionId, event) -> {
                 if (actionId == EditorInfo.IME_ACTION_SEND) {
                     // setting response tv.
@@ -66,34 +71,30 @@ public class AIAnswerActivity extends AppCompatActivity {
     }
 
     private void getResponse(String query) {
-        // setting question text.
         questionTV.setText(query);
         queryEdt.setText("");
 
-        // creating a queue for request queue.
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
 
-        // creating a JSON object.
+        String customPrompt = "You are a tarot master. Answer the user's questions in the style of a tarot reading. Use a mystical and insightful tone, referencing tarot cards as if you've drawn them for the user. Provide guidance as if interpreting the cards.\nUser's Question: " + query;
+
         JSONObject jsonObject = new JSONObject();
         try {
-            // adding params to JSON object.
             jsonObject.put("model", "gpt-3.5-turbo-instruct");
-            jsonObject.put("prompt", query);
+            jsonObject.put("prompt", customPrompt);
             jsonObject.put("temperature", 0);
-            jsonObject.put("max_tokens", 100);
+            jsonObject.put("max_tokens", 150);
             jsonObject.put("top_p", 1);
-            jsonObject.put("frequency_penalty", 0.0);
-            jsonObject.put("presence_penalty", 0.0);
+            jsonObject.put("frequency_penalty", 0.5);
+            jsonObject.put("presence_penalty", 0.6);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        // making a JSON object request.
         JsonObjectRequest postRequest = new JsonObjectRequest(JsonObjectRequest.Method.POST, url, jsonObject,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        // getting response message and setting it to text view.
                         try {
                             String responseMsg = response.getJSONArray("choices")
                                     .getJSONObject(0)
@@ -118,14 +119,12 @@ public class AIAnswerActivity extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> params = new HashMap<>();
-                // adding headers.
                 params.put("Content-Type", "application/json");
                 params.put("Authorization", "Bearer " + BuildConfig.OPENAI_API_KEY);
                 return params;
             }
         };
 
-        // adding retry policy for the request.
         postRequest.setRetryPolicy(new RetryPolicy() {
             @Override
             public int getCurrentTimeout() {
@@ -143,7 +142,6 @@ public class AIAnswerActivity extends AppCompatActivity {
             }
         });
 
-        // adding the request to the queue.
         queue.add(postRequest);
     }
 }
