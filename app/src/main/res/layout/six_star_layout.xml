@@ -5,13 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- 卡片1（过去） -->
-
-    <!-- 卡片2（现在） -->
-
-
-    <!-- 卡片3（未来） -->
-
     <ImageView
         android:id="@+id/card1"
         android:layout_width="100dp"
@@ -23,6 +16,16 @@
         app:layout_constraintHorizontal_bias="0.201"
         app:layout_constraintStart_toEndOf="@id/card6" />
 
+    <Button
+        android:id="@+id/myButton"
+        android:layout_width="109dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="0dp"
+        android:text="Analyze"
+        app:layout_constraintEnd_toEndOf="@id/card1"
+        app:layout_constraintStart_toStartOf="@id/card1"
+        app:layout_constraintTop_toBottomOf="@id/card1" />
+
     <ImageView
         android:id="@+id/card2"
         android:layout_width="100dp"
@@ -33,9 +36,7 @@
         app:layout_constraintEnd_toStartOf="@id/cutCard"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- 卡片4（原因） -->
 
-    <!-- 卡片5（许诺） -->
     <ImageView
         android:id="@+id/card3"
         android:layout_width="100dp"
@@ -57,9 +58,6 @@
         app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toEndOf="@id/card2" />
 
-    <!-- 卡片6（对策） -->
-
-    <!-- 切牌框（在中心偏上位置） -->
 
     <ImageView
         android:id="@+id/card5"

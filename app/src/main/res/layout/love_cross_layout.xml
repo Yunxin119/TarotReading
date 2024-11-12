@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- 第一张卡片，位于顶部，代表“问卜者自己的态度” -->
+
     <ImageView
         android:id="@+id/card1"
         android:layout_width="100dp"
@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="32dp"/>
 
-    <!-- 第二张卡片，位于中间偏下位置，代表“对方的态度” -->
+
     <ImageView
         android:id="@+id/card2"
         android:layout_width="100dp"
@@ -27,7 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"/>
 
-    <!-- 第三张卡片，位于左侧，代表“现阶段状况” -->
+
     <ImageView
         android:id="@+id/card3"
         android:layout_width="100dp"
@@ -38,7 +38,7 @@
         app:layout_constraintEnd_toStartOf="@id/card2"
         android:layout_marginEnd="16dp"/>
 
-    <!-- 第四张卡片，位于右侧，代表“未来发展” -->
+
     <ImageView
         android:id="@+id/card4"
         android:layout_width="100dp"
@@ -49,7 +49,7 @@
         app:layout_constraintStart_toEndOf="@id/card2"
         android:layout_marginStart="16dp"/>
 
-    <!-- 第五张卡片，位于中心偏下，代表“结果” -->
+
     <ImageView
         android:id="@+id/card5"
         android:layout_width="100dp"
@@ -59,6 +59,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/myButton"
+        android:layout_width="109dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="0dp"
+        android:text="Analyze"
+        app:layout_constraintEnd_toEndOf="@id/card5"
+        app:layout_constraintStart_toStartOf="@id/card5"
+        app:layout_constraintTop_toBottomOf="@id/card5" />
 
     <com.group5.tarotreading.CardPickView
         android:id="@+id/cardPickView"

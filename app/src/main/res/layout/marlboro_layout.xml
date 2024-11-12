@@ -5,11 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- 第一张卡片，左下角，代表“现状” -->
-
-    <!-- 第二张卡片，左中位置，代表“可预期的” -->
-
-    <!-- 第三张卡片，上中位置，代表“不可预期的” -->
     <ImageView
         android:id="@+id/card1"
         android:layout_width="100dp"
@@ -45,9 +40,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="100dp" />
 
-    <!-- 第四张卡片，右中位置，代表“即将发生” -->
-
-    <!-- 第五张卡片，右下角，代表“结果” -->
 
     <ImageView
         android:id="@+id/card4"
@@ -71,7 +63,6 @@
         android:layout_marginBottom="64dp"
         android:layout_marginEnd="32dp" />
 
-    <!-- 切牌框，位于中心位置 -->
     <ImageView
         android:id="@+id/cutCard"
         android:layout_width="100dp"
@@ -84,6 +75,16 @@
         app:layout_constraintEnd_toStartOf="@id/card5"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toEndOf="@id/card1" />
+
+    <Button
+        android:id="@+id/myButton"
+        android:layout_width="109dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="0dp"
+        android:text="Analyze"
+        app:layout_constraintEnd_toEndOf="@id/cutCard"
+        app:layout_constraintStart_toStartOf="@id/cutCard"
+        app:layout_constraintTop_toBottomOf="@id/cutCard" />
 
     <com.group5.tarotreading.CardPickView
         android:id="@+id/cardPickView"

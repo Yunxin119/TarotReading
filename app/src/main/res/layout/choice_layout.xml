@@ -63,7 +63,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- CardPickView 底部卡片列表视图 -->
+    <Button
+        android:id="@+id/myButton"
+        android:layout_width="109dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="0dp"
+        android:text="Analyze"
+        app:layout_constraintEnd_toEndOf="@id/card1"
+        app:layout_constraintStart_toStartOf="@id/card1"
+        app:layout_constraintTop_toBottomOf="@id/card1" />
+
+
     <com.group5.tarotreading.CardPickView
         android:id="@+id/cardPickView"
         android:layout_width="match_parent"

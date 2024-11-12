@@ -3,6 +3,8 @@ package com.group5.tarotreading;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
@@ -41,6 +43,23 @@ public class CardPickActivity extends AppCompatActivity implements CardPickView.
         cardPickView.setOnCardSelectedListener(this);
 
         cardPickView.initialize(pickCard, cutCard);
+
+        Button myButton = findViewById(R.id.myButton);
+        myButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CardPickActivity.this, ResultActivity.class);
+                intent.putExtra("spreadType", spreadType);
+                intent.putExtra("question", question);
+                ArrayList<Integer> cardSlotIds = new ArrayList<>();
+                for (ImageView slot : cardSlots) {
+                    cardSlotIds.add(slot.getId());
+                }
+                intent.putIntegerArrayListExtra("cardSlotIds", cardSlotIds);
+
+                startActivity(intent);
+            }
+        });
 
     }
 
