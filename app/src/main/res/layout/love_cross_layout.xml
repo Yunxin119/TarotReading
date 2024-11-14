@@ -70,7 +70,7 @@
         app:layout_constraintStart_toStartOf="@id/card5"
         app:layout_constraintTop_toBottomOf="@id/card5" />
 
-    <com.group5.tarotreading.CardPickView
+    <com.group5.tarotreading.card.CardPickView
         android:id="@+id/cardPickView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

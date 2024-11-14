@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:backgroundTint="@color/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        android:backgroundTint="@android:color/transparent"
+        android:textColor="@color/primary"
+        android:id="@+id/home"
+        />
+
     <!-- CardPickView 自定义视图 -->
-    <com.group5.tarotreading.CardPickView
+    <com.group5.tarotreading.card.CardPickView
         android:id="@+id/cardPickView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

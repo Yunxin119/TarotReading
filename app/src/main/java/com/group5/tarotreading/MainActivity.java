@@ -14,6 +14,11 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.group5.tarotreading.question.AskFragment;
+import com.group5.tarotreading.question.TodayFragment;
+import com.group5.tarotreading.user.LoginActivity;
+import com.group5.tarotreading.user.UserProfile;
+
 public class MainActivity extends AppCompatActivity {
 
     private Fragment todayFragment;

@@ -24,6 +24,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.google.common.util.concurrent.ListenableFuture;
+import com.group5.tarotreading.utils.VisionAIHelper;
 
 import java.io.File;
 import java.util.concurrent.ExecutionException;

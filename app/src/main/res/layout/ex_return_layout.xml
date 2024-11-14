@@ -63,7 +63,7 @@
 
     </GridLayout>
 
-    <com.group5.tarotreading.CardPickView
+    <com.group5.tarotreading.card.CardPickView
         android:id="@+id/cardPickView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
