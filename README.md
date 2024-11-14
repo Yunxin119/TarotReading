@@ -16,6 +16,7 @@ TarotReading is an Android application that combines traditional tarot card read
 
 
 <img width="200" alt="image" src="https://github.com/user-attachments/assets/e6d14616-6d2c-4f49-b03d-c0284b51c526">
+<img width="200" alt="image" src="https://github.com/user-attachments/assets/7ec814e1-e881-4f16-8c43-fbaee4b6692e">
 <img width="200" alt="image" src="https://github.com/user-attachments/assets/e584ecb9-7114-4955-8112-13e8e2ebdf83">
 <img width="200" alt="image" src="https://github.com/user-attachments/assets/70cdeb3d-b452-4ad9-8e6d-41217e97ba98">
 
