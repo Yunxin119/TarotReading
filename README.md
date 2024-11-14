@@ -13,6 +13,8 @@
 ## Overview
 
 TarotReading is an Android application that combines traditional tarot card reading with AI-powered interpretations using GPT-4. The app supports both digital card selection and physical card recognition through the device's camera.
+
+
 <img width="200" alt="image" src="https://github.com/user-attachments/assets/e6d14616-6d2c-4f49-b03d-c0284b51c526">
 <img width="200" alt="image" src="https://github.com/user-attachments/assets/e584ecb9-7114-4955-8112-13e8e2ebdf83">
 <img width="200" alt="image" src="https://github.com/user-attachments/assets/70cdeb3d-b452-4ad9-8e6d-41217e97ba98">
