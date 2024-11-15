@@ -1,79 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- card4  card5 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layer1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.9"
+        app:layout_constraintHeight_percent="0.21"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
+        <ImageView
+            android:id="@+id/card4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.9"
+            app:layout_constraintDimensionRatio="1:1.5"
+            android:background="@drawable/card_border"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/card5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.9"
+            app:layout_constraintDimensionRatio="1:1.5"
+            android:background="@drawable/card_border"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- card2  card3 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layer2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.6"
+        app:layout_constraintHeight_percent="0.21"
+        app:layout_constraintTop_toBottomOf="@id/layer1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/card2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.9"
+            app:layout_constraintDimensionRatio="1:1.5"
+            android:background="@drawable/card_border"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/card3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.9"
+            app:layout_constraintDimensionRatio="1:1.5"
+            android:background="@drawable/card_border"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- card1 -->
     <ImageView
         android:id="@+id/card1"
-        android:layout_width="100dp"
-        android:layout_height="150dp"
-        android:layout_margin="16dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.18"
+        app:layout_constraintDimensionRatio="1:1.5"
         android:background="@drawable/card_border"
-        app:layout_constraintTop_toBottomOf="@id/card2"
-        app:layout_constraintBottom_toTopOf="@id/cardPickView"
+        app:layout_constraintTop_toBottomOf="@id/layer2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-
-    <ImageView
-        android:id="@+id/card2"
-        android:layout_width="100dp"
-        android:layout_height="150dp"
-        android:layout_margin="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/card_border"
-        app:layout_constraintBottom_toTopOf="@id/card1"
-        app:layout_constraintEnd_toStartOf="@id/card3"
-        app:layout_constraintHorizontal_bias="0.403"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/card3"
-        android:layout_width="100dp"
-        android:layout_height="150dp"
-        android:layout_margin="16dp"
-        android:background="@drawable/card_border"
-        app:layout_constraintStart_toEndOf="@id/card2"
-        app:layout_constraintBottom_toTopOf="@id/card1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4" />
-
-
-    <ImageView
-        android:id="@+id/card4"
-        android:layout_width="100dp"
-        android:layout_height="150dp"
-        android:layout_margin="16dp"
-        android:background="@drawable/card_border"
-        app:layout_constraintBottom_toTopOf="@id/card2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <ImageView
-        android:id="@+id/card5"
-        android:layout_width="100dp"
-        android:layout_height="150dp"
-        android:layout_margin="16dp"
-        android:background="@drawable/card_border"
-        app:layout_constraintBottom_toTopOf="@id/card3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+    <!-- myButton -->
     <Button
         android:id="@+id/myButton"
-        android:layout_width="109dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Analyze"
-        app:layout_constraintEnd_toEndOf="@id/card1"
-        app:layout_constraintStart_toStartOf="@id/card1"
-        app:layout_constraintTop_toBottomOf="@id/card1" />
+        app:layout_constraintTop_toBottomOf="@id/card1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
 
-
+    <!-- CardPickView -->
     <com.group5.tarotreading.card.CardPickView
         android:id="@+id/cardPickView"
         android:layout_width="match_parent"
