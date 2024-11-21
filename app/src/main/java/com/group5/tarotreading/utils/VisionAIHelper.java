@@ -38,32 +38,46 @@ public class VisionAIHelper {
         JSONObject jsonObject = new JSONObject();
 
         try {
-            jsonObject.put("model", "gpt-4-vision-preview");
+            jsonObject.put("model", "gpt-4o");
             JSONArray messages = new JSONArray();
+            // Add system message
+            JSONObject systemMessage = new JSONObject();
+            systemMessage.put("role", "system");
+            JSONArray systemContent = new JSONArray();
+            JSONObject systemText = new JSONObject();
+            systemText.put("type", "text");
+            systemText.put("text", "recognite the card and only return the name (choose from 1 of these following names):\n\nDeath\nJudgment\nJustice\nStrength\nTemperance\nTheChariot\nTheDevil\nTheEmperor\nTheEmpress\nTheFool\nTheHangedMan\nTheHermit\nTheHierophant\nTheHighPriestess\nTheLovers\nTheMagician\nTheMoon\nTheStar\nTheSun\nTheTower\nTheWheelOfFortune\nTheWorld\n\nAceOfCups\nTwoOfCups\nThreeOfCups\nFourOfCups\nFiveOfCups\nSixOfCups\nSevenOfCups\nEightOfCups\nNineOfCups\nTenOfCups\nPageOfCups\nKnightOfCups\nQueenOfCups\nKingOfCups\n\nAceOfPentacles\nTwoOfPentacles\nThreeOfPentacles\nFourOfPentacles\nFiveOfPentacles\nSixOfPentacles\nSevenOfPentacles\nEightOfPentacles\nNineOfPentacles\nTenOfPentacles\nPageOfPentacles\nKnightOfPentacles\nQueenOfPentacles\nKingOfPentacles\n\nAceOfSwords\nTwoOfSwords\nThreeOfSwords\nFourOfSwords\nFiveOfSwords\nSixOfSwords\nSevenOfSwords\nEightOfSwords\nNineOfSwords\nTenOfSwords\nPageOfSwords\nKnightOfSwords\nQueenOfSwords\nKingOfSwords\n\nAceOfWands\nTwoOfWands\nThreeOfWands\nFourOfWands\nFiveOfWands\nSixOfWands\nSevenOfWands\nEightOfWands\nNineOfWands\nTenOfWands\nPageOfWands\nKnightOfWands\nQueenOfWands\nKingOfWands");
+            systemContent.put(systemText);
+            systemMessage.put("content", systemContent);
+            messages.put(systemMessage);
+
+            // Add user message with image
             JSONObject userMessage = new JSONObject();
             userMessage.put("role", "user");
-
-            JSONArray contentArray = new JSONArray();
-
-            // Specific prompt for tarot card identification
-            JSONObject textContent = new JSONObject();
-            textContent.put("type", "text");
-            textContent.put("text", "This is an image of a tarot card. Please identify which tarot card it is. Only return the card name in standard format (e.g., 'The Fool', 'Two of Cups', etc.). If the image doesn't show a clear tarot card, say 'No tarot card detected'.");
-            contentArray.put(textContent);
-
-            // Add image
+            JSONArray userContent = new JSONArray();
             JSONObject imageContent = new JSONObject();
             imageContent.put("type", "image_url");
             JSONObject imageUrl = new JSONObject();
             imageUrl.put("url", "data:image/jpeg;base64," + bitmapToBase64(image));
             imageContent.put("image_url", imageUrl);
-            contentArray.put(imageContent);
-
-            userMessage.put("content", contentArray);
+            userContent.put(imageContent);
+            userMessage.put("content", userContent);
             messages.put(userMessage);
+
             jsonObject.put("messages", messages);
-            jsonObject.put("max_tokens", 50);
-            jsonObject.put("temperature", 0.3);
+
+            // Add response format
+            JSONObject responseFormat = new JSONObject();
+            responseFormat.put("type", "text");
+            jsonObject.put("response_format", responseFormat);
+
+            // Add other parameters
+            jsonObject.put("temperature", 1);
+            jsonObject.put("max_tokens", 2048);
+            jsonObject.put("top_p", 1);
+            jsonObject.put("frequency_penalty", 0);
+            jsonObject.put("presence_penalty", 0);
+
 
         } catch (Exception e) {
             listener.onFailure("Error preparing request: " + e.getMessage());
