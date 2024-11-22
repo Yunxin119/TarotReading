@@ -49,13 +49,13 @@ public class TarotPromptBuilder {
                 .append("\n2. Structure your response following these steps:")
                 .append("\n   a. Begin with a brief introduction connecting to the seeker's question")
                 .append("\n   b. Interpret each card individually, separated by '##'")
-                .append("\n   c. Conclude with a synthesis of all cards' meanings and specific guidance")
+                .append("\n   c. Conclude with a synthesis of all cards' meanings and specific guidance, separated by '##'")
                 .append("\n3. For each card interpretation, include:")
                 .append("\n   - The card's name and position in the spread")
                 .append("\n   - Its specific meaning in the context of the question")
                 .append("\n   - How it relates to other cards in the spread")
                 .append("\n4. Keep the language:")
-                .append("\n   - Clear and direct")
+                .append("\n   - Clear and gental sounds like tarot master")
                 .append("\n   - Empowering and constructive")
                 .append("\n   - Professional yet mystical");
 

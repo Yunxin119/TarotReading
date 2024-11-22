@@ -3,16 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/answer2">
 
     <!-- Title Text -->
     <TextView
+        android:id="@+id/pleaseWaitText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your Answer"
+        android:text="Please wait for your answer"
         android:textColor="@color/white"
+        android:fontFamily="@font/satisfyregular"
         app:layout_constraintBottom_toTopOf="@+id/scroll"
         android:layout_marginBottom="20dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,6 +48,7 @@
                 android:gravity="center"
                 android:text=""
                 android:textColor="@color/white"
+                android:fontFamily="@font/satisfyregular"
                 android:textSize="18sp" />
         </FrameLayout>
 
@@ -65,13 +69,14 @@
             android:id="@+id/previousButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Previous"
-            android:layout_marginEnd="20dp"/>
+            android:visibility="visible"
+            android:text="Previous" />
 
         <Button
             android:id="@+id/nextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="visible"
             android:text="Next"/>
 
     </LinearLayout>
