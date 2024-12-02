@@ -70,14 +70,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="visible"
-            android:text="Previous" />
+            android:text=""
+            android:drawableLeft="@drawable/ic_left_foreground"
+            android:drawableTint="@color/primary"
+            android:backgroundTint="@android:color/transparent"
+            android:contentDescription="Previous" />
 
         <Button
             android:id="@+id/nextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="visible"
-            android:text="Next"/>
+            android:text=""
+            android:drawableLeft="@drawable/ic_right_foreground"
+            android:drawableTint="@color/primary"
+            android:backgroundTint="@android:color/transparent"
+            android:contentDescription="Next"/>
 
     </LinearLayout>
 
