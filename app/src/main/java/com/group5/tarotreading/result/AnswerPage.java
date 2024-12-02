@@ -6,6 +6,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,8 @@ public class AnswerPage extends AppCompatActivity {
     private Button nextButton;
     private Button home;
     private int currentIndex = 0;
+    private ProgressBar loadingSpinner;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,11 @@ public class AnswerPage extends AppCompatActivity {
         answerText = findViewById(R.id.answerText);
         answerText.setMovementMethod(new ScrollingMovementMethod());
         nextButton = findViewById(R.id.nextButton);
+
+        // Add a loading spinner when user waiting for ai answer
+        loadingSpinner = findViewById(R.id.loadingSpinner);
+        loadingSpinner.setVisibility(View.VISIBLE);
+
 
         spreadType = getIntent().getStringExtra("spreadType");
         questionContent = getIntent().getStringExtra("question");
@@ -55,6 +63,7 @@ public class AnswerPage extends AppCompatActivity {
                     Toast.makeText(AnswerPage.this, "Response is not properly formatted.", Toast.LENGTH_LONG).show();
                     return;
                 }
+                loadingSpinner.setVisibility(View.GONE);
 
                 response = response.trim().replaceAll("\\s+", " ");
                 Log.d("CleanedResponse", response);
@@ -72,6 +81,7 @@ public class AnswerPage extends AppCompatActivity {
 
             @Override
             public void onFailure(String errorMessage) {
+                loadingSpinner.setVisibility(View.GONE);
                 Toast.makeText(AnswerPage.this, "Error: " + errorMessage, Toast.LENGTH_LONG).show();
             }
         });
