@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -31,7 +32,9 @@ public class QuestionActivity extends AppCompatActivity {
     Button ask;
     String prompt;
     FrameLayout buttonContainer;
-    Button test;
+    Button popoutInstruction;
+    FrameLayout questionInstruction;
+    ImageView closeIcon;
 
 
     @Override
@@ -42,11 +45,19 @@ public class QuestionActivity extends AppCompatActivity {
 
         question_content = findViewById(R.id.questioncontent);
         back = findViewById(R.id.back);
-
         ask = findViewById(R.id.ask);
+
+        // Elements for popout instruction
+        popoutInstruction = findViewById(R.id.popoutInstruction);
+        questionInstruction = findViewById(R.id.questionInstruction);
+        questionInstruction.setVisibility(View.GONE);
+        closeIcon = findViewById(R.id.closeIcon);
+
+        // Button container for popping out button feature
         buttonContainer = findViewById(R.id.buttonContainer);
+        buttonContainer.setVisibility(View.GONE);
 
-
+        // Call OpenAI helper
         OpenAIHelper openAIHelper = new OpenAIHelper(this, BuildConfig.OPENAI_API_KEY);
 
         ask.setOnClickListener(view -> {
@@ -88,22 +99,35 @@ public class QuestionActivity extends AppCompatActivity {
             }
         });
 
+        popoutInstruction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                questionInstruction.setVisibility(View.VISIBLE);
+                // Give the question Instruction a scale up animation
+                // Set initial scale to 0 (invisible)
+                questionInstruction.setScaleX(0f);
+                questionInstruction.setScaleY(0f);
+                // Smooth scale-up animation
+                questionInstruction.animate()
+                        .scaleX(1f)
+                        .scaleY(1f)
+                        .setDuration(300)
+                        .start();
+            }
+        });
+
+        closeIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                questionInstruction.setVisibility(view.GONE);
+            }
+        });
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-//        test.setOnClickListener(v -> {
-//            String question = question_content.getText().toString();
-//            if (!question.isEmpty()) {
-//                Intent myIntent = new Intent(QuestionActivity.this, AIAnswerActivity.class);
-//                myIntent.putExtra("question", question);
-//                QuestionActivity.this.startActivity(myIntent);
-//            } else {
-//                Toast.makeText(QuestionActivity.this, "Please enter a question.", Toast.LENGTH_SHORT).show();
-//            }
-//        });
     }
 
 
@@ -113,6 +137,9 @@ public class QuestionActivity extends AppCompatActivity {
 
         String str = spreadTypeFormatted.substring(0, 1).toUpperCase() + spreadTypeFormatted.substring(1);
 
+        buttonContainer.setVisibility(View.VISIBLE);
+
+        // Set next button attributes
         nextButton.setAllCaps(false);
         nextButton.setText(str);
         nextButton.setBackgroundResource(R.drawable.popoutbtn);
@@ -127,11 +154,15 @@ public class QuestionActivity extends AppCompatActivity {
         buttonLayoutParams.gravity = Gravity.CENTER;
         nextButton.setLayoutParams(buttonLayoutParams);
 
+        // Proceed to next screen when clicking on the nextButton
         nextButton.setOnClickListener(view -> {
             Intent intent = new Intent(QuestionActivity.this, CardPickActivity.class);
+            // Put extra info to next intent
             intent.putExtra("spreadType", spreadType);
             String question = question_content.getText().toString().trim();
             intent.putExtra("question", question);
+
+            // According to different spread types, pass different pick card num and cut card value to next screen
             int pickcard;
             Boolean cutcard = false;
 
@@ -167,6 +198,18 @@ public class QuestionActivity extends AppCompatActivity {
         });
 
         buttonContainer.addView(nextButton);
+
+        // Give the popout button a scale up animation
+        // Set initial scale to 0 (invisible)
+        nextButton.setScaleX(0f);
+        nextButton.setScaleY(0f);
+        // Smooth scale-up animation
+        nextButton.animate()
+                .scaleX(1f)
+                .scaleY(1f)
+                .setDuration(300)
+                .start();
+
         nextButton.bringToFront();
         buttonContainer.setClickable(true);
         buttonContainer.setFocusable(true);

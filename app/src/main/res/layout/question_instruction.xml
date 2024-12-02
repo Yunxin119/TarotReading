@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Title Text -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="How to Ask a Tarot Question"
+        android:fontFamily="@font/lora"
+        android:textSize="20sp"
+        android:textColor="@color/primary"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:paddingBottom="8dp" />
+
+    <!-- Instruction Intro -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary"
+        android:textSize="16sp"
+        android:fontFamily="@font/lora"
+        android:lineSpacingExtra="4dp"
+        android:text="To get the most accurate and insightful tarot reading, follow these tips:"
+        android:paddingBottom="16dp" />
+
+    <!-- Tips -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary"
+        android:fontFamily="@font/lora"
+        android:textSize="16sp"
+        android:lineSpacingExtra="4dp"
+        android:text="1. Be Specific: Frame your question clearly and focus on one topic.\nExample: 'What can I do to improve my relationship?'"
+        android:paddingBottom="16dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary"
+        android:fontFamily="@font/lora"
+        android:textSize="16sp"
+        android:lineSpacingExtra="4dp"
+        android:text="2. Focus on Yourself: Ask questions about your own actions or feelings, rather than others'.\nExample: 'How can I handle this situation at work?'"
+        android:paddingBottom="16dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary"
+        android:fontFamily="@font/lora"
+        android:textSize="16sp"
+        android:lineSpacingExtra="4dp"
+        android:text="3. Stay Open-Ended: Avoid yes/no questions. Instead, ask questions that allow for deeper insights.\nExample: 'What opportunities should I consider in my career?'"
+        android:paddingBottom="16dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary"
+        android:fontFamily="@font/lora"
+        android:textSize="16sp"
+        android:lineSpacingExtra="4dp"
+        android:text="4. Set a Time Frame (if needed): Mention a specific time period to narrow down the focus.\nExample: 'What should I focus on this month?'"
+        android:paddingBottom="16dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary"
+        android:fontFamily="@font/lora"
+        android:textSize="16sp"
+        android:lineSpacingExtra="4dp"
+        android:text="5. Avoid Irrelevant Questions: Tarot is not meant for trivial matters like the weather or factual scenarios.\nExample to avoid: 'Will it rain tomorrow?'"
+        android:paddingBottom="16dp" />
+
+</LinearLayout>
