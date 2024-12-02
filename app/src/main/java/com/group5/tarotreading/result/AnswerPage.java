@@ -100,7 +100,8 @@ public class AnswerPage extends AppCompatActivity {
         });
 
         viewModel.isLastInterpretation().observe(this, isLast -> {
-            nextButton.setText(isLast ? "Home" : "Next");
+            int drawable = isLast ? R.drawable.ic_home_foreground : R.drawable.ic_right_foreground;
+            nextButton.setCompoundDrawablesWithIntrinsicBounds(drawable, 0, 0, 0);
         });
 
         viewModel.isFirstInterpretation().observe(this, isFirst -> {
