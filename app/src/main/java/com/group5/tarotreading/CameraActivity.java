@@ -41,7 +41,7 @@ public class CameraActivity extends AppCompatActivity {
     private CameraSelector cameraSelector;
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
     private ProcessCameraProvider cameraProvider;
-    private Button captureButton, switchCameraButton, analyzeButton, backButton;
+    private Button captureButton, analyzeButton, backButton;
     private boolean isBackCamera = true;
     private boolean isPreviewMode = false;
     private Bitmap currentImageBitmap;
@@ -66,7 +66,6 @@ public class CameraActivity extends AppCompatActivity {
         previewView = findViewById(R.id.previewView);
         capturedImageView = findViewById(R.id.capturedImageView);
         captureButton = findViewById(R.id.button_capture);
-        switchCameraButton = findViewById(R.id.button_switch_camera);
         analyzeButton = findViewById(R.id.button_analyze);
         backButton = findViewById(R.id.back_button);
     }
@@ -74,7 +73,7 @@ public class CameraActivity extends AppCompatActivity {
     private void setupInitialButtonStates() {
         analyzeButton.setVisibility(View.INVISIBLE);
         captureButton.setText("Capture");
-        switchCameraButton.setVisibility(View.VISIBLE);
+
     }
 
     private void setupButtonListeners() {
@@ -86,7 +85,6 @@ public class CameraActivity extends AppCompatActivity {
             }
         });
 
-        switchCameraButton.setOnClickListener(v -> switchCamera());
 
         backButton.setOnClickListener(v -> {
             Intent intent = new Intent(CameraActivity.this, MainActivity.class);
@@ -172,7 +170,6 @@ public class CameraActivity extends AppCompatActivity {
         capturedImageView.setVisibility(View.VISIBLE);
         previewView.setVisibility(View.GONE);
         captureButton.setText("Retake");
-        switchCameraButton.setVisibility(View.INVISIBLE);
         analyzeButton.setVisibility(View.VISIBLE);
         analyzeButton.setEnabled(true);
     }
@@ -183,7 +180,6 @@ public class CameraActivity extends AppCompatActivity {
         capturedImageView.setVisibility(View.GONE);
         previewView.setVisibility(View.VISIBLE);
         captureButton.setText("Capture");
-        switchCameraButton.setVisibility(View.VISIBLE);
         analyzeButton.setVisibility(View.INVISIBLE);
         startCamera();
     }
@@ -213,13 +209,6 @@ public class CameraActivity extends AppCompatActivity {
         cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture);
     }
 
-    private void switchCamera() {
-        isBackCamera = !isBackCamera;
-        cameraSelector = new CameraSelector.Builder()
-                .requireLensFacing(isBackCamera ? CameraSelector.LENS_FACING_BACK : CameraSelector.LENS_FACING_FRONT)
-                .build();
-        bindCameraPreview(cameraProvider);
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
