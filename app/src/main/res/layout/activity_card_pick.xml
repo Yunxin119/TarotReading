@@ -14,7 +14,7 @@
         android:id="@+id/home"
         />
 
-    <!-- CardPickView 自定义视图 -->
+    <!-- CardPickView -->
     <com.group5.tarotreading.card.CardPickView
         android:id="@+id/cardPickView"
         android:layout_width="match_parent"

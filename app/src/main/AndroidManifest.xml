@@ -28,9 +28,6 @@
         <!-- activities -->
         <activity android:name=".CameraActivity" />
         <activity
-            android:name=".ResultActivity"
-            android:exported="false" />
-        <activity
             android:name=".card.CardPickActivity"
             android:exported="false" />
         <activity
