@@ -106,6 +106,7 @@ public class CardPickView extends View {
         if (cutCardEnabled && !cardList.isEmpty() && cutCardSlot != null) {
             Card cutCard = cardList.get(cardList.size() - 1);
             cutCard.flip();
+            cardList.remove(cutCard);
             cutCardSlot.setImageBitmap(cutCard.getImage());
 
             if (onCardSelectedListener != null) {
