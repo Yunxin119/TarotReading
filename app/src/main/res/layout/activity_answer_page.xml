@@ -8,18 +8,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/answer2">
 
-    <!-- Title Text -->
-    <TextView
-        android:id="@+id/pleaseWaitText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Please wait for your answer"
-        android:textColor="@color/white"
-        android:fontFamily="@font/satisfyregular"
-        app:layout_constraintBottom_toTopOf="@+id/scroll"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+
 
     <!-- Scrollable Content -->
     <ScrollView
@@ -27,11 +16,11 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintWidth_percent="0.5"
-        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintHeight_percent="0.4"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.4"
+        app:layout_constraintVertical_bias="0.35"
         app:layout_constraintEnd_toEndOf="parent">
 
         <!-- FrameLayout to Hold Content -->
@@ -39,6 +28,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent">
+
+            <!-- Title Text -->
+            <TextView
+                android:id="@+id/pleaseWaitText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Dear seeker, \nthe cards are revealing...\n\nYour answer is near."
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:fontFamily="@font/lora"
+                android:gravity="center" />
 
             <!-- TextView for Content -->
             <TextView
@@ -48,8 +48,8 @@
                 android:gravity="center"
                 android:text=""
                 android:textColor="@color/white"
-                android:fontFamily="@font/satisfyregular"
-                android:textSize="18sp" />
+                android:fontFamily="@font/lora"
+                android:textSize="16sp" />
         </FrameLayout>
 
     </ScrollView>

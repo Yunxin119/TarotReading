@@ -47,7 +47,7 @@ public class OpenAIHelper {
 
             // Other parameters
             jsonObject.put("temperature", 0);
-            jsonObject.put("max_tokens", 300);
+            jsonObject.put("max_tokens", 800);
             jsonObject.put("top_p", 1);
             jsonObject.put("frequency_penalty", 0.0);
             jsonObject.put("presence_penalty", 0.0);

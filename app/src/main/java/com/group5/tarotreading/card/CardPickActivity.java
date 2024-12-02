@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.group5.tarotreading.result.AnswerPage;
 import com.group5.tarotreading.R;
@@ -17,6 +18,7 @@ import com.group5.tarotreading.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Timer;
 
 public class CardPickActivity extends AppCompatActivity implements CardPickView.OnCardSelectedListener {
 
@@ -27,7 +29,7 @@ public class CardPickActivity extends AppCompatActivity implements CardPickView.
     private List<ImageView> cardSlots = new ArrayList<>();
     private int selectedSlotIndex = 0;
     private ImageView cutCardSlot;
-    private Button home;
+    private Button myButton;
     private List<String> selectedCards = new ArrayList<String>();
 
     @SuppressLint("MissingInflatedId")
@@ -45,7 +47,10 @@ public class CardPickActivity extends AppCompatActivity implements CardPickView.
         // Initialize but do not show any selected cards until user interaction
         cardPickView.initialize(pickCard, cutCard);
 
-        Button myButton = findViewById(R.id.myButton);
+
+        myButton = findViewById(R.id.myButton);
+        myButton.setVisibility(View.GONE);
+        // Proceed to next view
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -143,8 +148,10 @@ public class CardPickActivity extends AppCompatActivity implements CardPickView.
             cardInfo = "cut card:" + selectedCard.getName() + orientation;
             selectedCards.add(cardInfo);
         } else if (selectedSlotIndex < cardSlots.size()) {
+
             selectedCard.flip();
             cardSlots.get(selectedSlotIndex).setImageBitmap(selectedCard.getImage());
+
 
             String cardInfo;
             String slotKey = String.valueOf(selectedSlotIndex+1);
@@ -153,6 +160,11 @@ public class CardPickActivity extends AppCompatActivity implements CardPickView.
             selectedCards.add(cardInfo);
 
             selectedSlotIndex++;
+        }
+
+        // Show button layout when the cardSlot is full
+        if (selectedSlotIndex == cardSlots.size()) {
+            myButton.setVisibility(View.VISIBLE);
         }
     }
 }

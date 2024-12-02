@@ -8,4 +8,5 @@
     <color name="edt_back_color">#D3D3D3</color>
     <color name="back_color">#000000</color>
     <color name="red">#FF0000</color>
+    <color name="transprimary">#33D4C17D</color>
 </resources>

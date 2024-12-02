@@ -45,7 +45,6 @@ public class QuestionActivity extends AppCompatActivity {
 
         ask = findViewById(R.id.ask);
         buttonContainer = findViewById(R.id.buttonContainer);
-        test = findViewById(R.id.test);
 
 
         OpenAIHelper openAIHelper = new OpenAIHelper(this, BuildConfig.OPENAI_API_KEY);

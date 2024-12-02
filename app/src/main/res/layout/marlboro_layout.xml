@@ -107,7 +107,12 @@
         app:layout_constraintTop_toBottomOf="@id/layer3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/arizonia"
+        android:textSize="30sp"
+        android:backgroundTint="@color/transprimary"
+        android:visibility="gone"
+        />
 
     <com.group5.tarotreading.card.CardPickView
         android:id="@+id/cardPickView"

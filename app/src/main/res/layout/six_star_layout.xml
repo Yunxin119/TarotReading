@@ -151,10 +151,14 @@
 
     <Button
         android:id="@+id/myButton"
-        android:layout_width="109dp"
-        android:layout_height="42dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
         android:text="Analyze"
+        android:fontFamily="@font/arizonia"
+        android:textSize="30sp"
+        android:backgroundTint="@color/transprimary"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout" />
