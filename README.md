@@ -1,44 +1,165 @@
-# TarotReading App - Technical Documentation
+# TarotReading App
 
-## Table of Contents
-- [Overview](#overview)
-- [Installation](#installation)
-- [Technical Architecture](#technical-architecture)
-- [Key Features](#key-features)
-- [Implementation Details](#implementation-details)
-- [Flow Diagrams](#flow-diagrams)
-- [Core Components](#core-components)
-
-
-## Overview
-
-TarotReading is an Android application that combines traditional tarot card reading with AI-powered interpretations using GPT-4. The app supports both digital card selection and physical card recognition through the device's camera.
-
+A modern Android application that combines traditional tarot card reading with AI-powered interpretations using GPT-4. The app supports both digital card selection and physical card recognition through the device's camera.
 
 <img width="200" alt="image" src="https://github.com/user-attachments/assets/e6d14616-6d2c-4f49-b03d-c0284b51c526">
 <img width="200" alt="image" src="https://github.com/user-attachments/assets/7ec814e1-e881-4f16-8c43-fbaee4b6692e">
 <img width="200" alt="image" src="https://github.com/user-attachments/assets/e584ecb9-7114-4955-8112-13e8e2ebdf83">
 <img width="200" alt="image" src="https://github.com/user-attachments/assets/70cdeb3d-b452-4ad9-8e6d-41217e97ba98">
 
+## Table of Contents
+- [Overview](#overview)
+- [User Flow](#user-flow)
+- [Features](#features)
+- [Installation](#installation)
+- [Technical Architecture](#technical-architecture)
+- [Development Setup](#development-setup)
+- [API Integration](#api-integration)
+- [Implementation Details](#implementation-details)
+- [Contributing](#contributing)
+- [License](#license)
+- [Support](#support)
 
+## Overview
+
+TarotReading is a sophisticated Android application that merges traditional tarot reading practices with modern AI technology. The app provides users with both digital and physical card reading capabilities, powered by GPT-4 for intelligent interpretations.
+
+## User Flow
+
+```mermaid
+flowchart TD
+    Start[Start] --> Login{Login or Register}
+    
+    %% Login Flow
+    Login -->|New User| Register[Register]
+    Register --> MainMenu
+    Login -->|Existing User| MainMenu
+    
+    %% Main Menu
+    MainMenu[Main Menu] --> UserPage[User Page]
+    MainMenu --> ReadingType{Today's Fortune or Ask Question?}
+    
+    %% User Page Options
+    UserPage --> History[Reading History]
+    UserPage --> ChangePass[Change Password]
+    UserPage --> Logout[Logout]
+    Logout --> Start
+    
+    %% Reading Flow
+    ReadingType -->|Today's Fortune| CardMethod
+    ReadingType -->|Ask Question| QuestionInput[Enter Question]
+    QuestionInput --> CardMethod
+    
+    %% Card Selection Method
+    CardMethod{Digital or Physical Cards?} -->|Digital| DigitalSelect[Pick Card via API]
+    CardMethod -->|Physical| PhysicalCard[Take Picture of Card]
+    
+    %% Processing and Results
+    DigitalSelect --> Processing[Process Reading]
+    PhysicalCard --> Processing
+    Processing --> Results[Display Reading Results]
+    
+    %% End Options
+    Results --> EndOptions
+    EndOptions{End Options} -->|New Reading| ReadingType
+    EndOptions -->|Main Menu| MainMenu
+    EndOptions -->|Exit| End[End]
+    
+    %% Sticky Notes
+    classDef note fill:#ff9,stroke:#333,stroke-width:2px
+    classDef warning fill:#ffcccc,stroke:#333,stroke-width:2px
+    
+    note1[Users must verify email]:::note
+    note2[API rate limits may apply]:::warning
+    note3[Offline mode available]:::note
+    note4[Camera permission required]:::warning
+    
+    %% Connect notes to relevant steps
+    Register --- note1
+    DigitalSelect --- note2
+    Results --- note3
+    PhysicalCard --- note4
+```
+
+## Features
+
+### 1. Multiple Reading Methods
+- Digital card selection with intuitive UI
+- Physical card recognition using device camera
+- Various spread patterns:
+  - OneCard (Daily reading)
+  - TimeFlow (Past-Present-Future)
+  - LoverCross (Relationship analysis)
+  - SixStars (Comprehensive analysis)
+  - TwoSelection (Decision making)
+  - Marlboro (Situation development)
+
+### 2. AI-Powered Interpretations
+- GPT-4 integration for accurate readings
+- Context-aware interpretations
+- Natural language processing
+- Personalized reading experiences
+
+### 3. User Management
+- Secure authentication system
+- Profile management
+- Reading history
+- Password recovery
+- Email verification
+
+### 4. Technical Features
+- Custom card visualization system
+- Real-time camera integration
+- Offline mode support
+- Secure API integration
+- Firebase Firestore backend
 
 ## Installation
 
-1. Clone the repository
+1. Clone the repository:
 ```bash
 git clone https://github.com/yunxin119/TarotReading.git
 ```
 
-2. Add API key in `local.properties`:
+2. Configure API key in `local.properties`:
 ```properties
 OPENAI_API_KEY=your_api_key_here
 ```
 
-3. Sync Gradle and run
+3. Install dependencies:
+```gradle
+dependencies {
+    implementation 'com.android.volley:volley:1.2.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+}
+```
+
+4. Build and run the project
+
+## Technical Architecture
+
+### Project Structure
+```
+src/main/java/com/group5/tarotreading/
+├── activity/                    # Core Activities
+├── card/                        # Card Management
+├── question/                    # Question Processing
+├── result/                      # Result Display
+├── user/                        # User Management
+└── utils/                       # Utilities
+```
+
+### Core Components
+1. **CardPickView**: Custom view for card interaction
+2. **OpenAIHelper**: GPT-4 integration
+3. **VisionAIHelper**: Camera processing
+4. **UserProfile**: User management
+5. **TarotPromptBuilder**: Reading generation
 
 ## API Integration
 
-### OpenAI GPT-4 Integration
+### OpenAI GPT-4 Configuration
 ```java
 JSONObject jsonObject = new JSONObject();
 jsonObject.put("model", "gpt-4");
@@ -53,175 +174,9 @@ params.put("Content-Type", "application/json");
 params.put("Authorization", "Bearer " + apiKey);
 ```
 
-## Contributing
-
-1. Fork the repository
-2. Create feature branch
-3. Commit changes
-4. Push to branch
-5. Create Pull Request
-
-## Development Setup
-
-### Required Dependencies
-```gradle
-dependencies {
-    implementation 'com.android.volley:volley:1.2.1'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
-}
-```
-
-
-## Technical Architecture
-
-### Core Components
-```
-src/main/java/com/group5/tarotreading/
-├── AIAnswerActivity.java          # AI-powered answer processing
-├── CameraActivity.java           # Camera handling for physical cards
-├── MainActivity.java             # Application entry point
-├── ResultActivity.java          # Display reading results
-│
-├── card/                        # Card Management Package
-│   ├── Card.java               # Card entity model
-│   ├── CardPick.java           # Card selection logic
-│   ├── CardPickActivity.java   # Card selection UI
-│   └── CardPickView.java       # Custom card view implementation
-│
-├── question/                    # Question Handling Package
-│   ├── AskFragment.java        # Question input interface
-│   ├── QuestionActivity.java   # Question processing
-│   └── TodayFragment.java      # Daily reading interface
-│
-├── result/                     # Result Display Package
-│   └── AnswerPage.java        # Tarot reading results view
-│
-├── user/                       # User Management Package
-│   ├── ChangePasswordActivity.java  # Password modification
-│   ├── LoginActivity.java          # User authentication
-│   ├── RegisterActivity.java       # User registration
-│   └── UserProfile.java           # User profile management
-│
-└── utils/                      # Utility Package
-    ├── OpenAIHelper.java           # GPT API integration
-    ├── OpenAIImageOptimizer.java   # Image optimization
-    └── VisionAIHelper.java         # Computer vision processing
-```
-
-## Key Features
-
-### 1. Dynamic Card Management System
-- Custom `CardPickView` implementation for interactive card selection
-- Card state management (face up/down, rotation)
-- Asset management for card images
-```java
-public class Card {
-    private Bitmap frontImage;
-    private Bitmap backImage;
-    private boolean isFaceUp = false;
-    private boolean isReversed;
-    
-    public void flip() {
-        Random random = new Random();
-        this.isReversed = random.nextBoolean();
-        frontImage = isReversed ? getRotatedBitmap(frontImage) : frontImage;
-        isFaceUp = !isFaceUp;
-    }
-}
-```
-
-### 2. Spread Pattern System
-The app supports multiple spread patterns:
-- OneCard: Daily reading (1 card)
-- TimeFlow: Past-Present-Future (3 cards)
-- LoverCross: Relationship analysis (5 cards)
-- SixStars: Comprehensive situation analysis (6 cards)
-- TwoSelection: Decision making (5 cards)
-- Marlboro: Situation development (5 cards)
-
-### 3. AI Integration
-Implements GPT-4 for:
-```java
-public class OpenAIHelper {
-    private static final String url = "https://api.openai.com/v1/chat/completions";
-    
-    public void generateResponse(String prompt, AIResponseListener listener) {
-        // API integration for spread selection and interpretation
-    }
-}
-```
-### 4. User Registration System
-- Email-based registration
-- Input validation
-- Secure password storage
-- Firebase Firestore integration
-- Auto-login after registration
-
-##### Registration Flow
-```java
-public class RegisterActivity extends AppCompatActivity {
-private FirebaseFirestore db = FirebaseFirestore.getInstance();
-private CollectionReference collectionReference = db.collection("Tarot-Reading");
-
-    // Registration process
-    private boolean register() {
-        String username = eusername.getText().toString().trim();
-        String email = eemail.getText().toString().trim();
-        String password = epassword.getText().toString().trim();
-        
-        if (CheckAllFields(username, email, password)) {
-            SaveDataToNewDocument();
-            return true;
-        }
-        return false;
-    }
-
-    // Data validation
-    private boolean CheckAllFields(String username, String email, String password) {
-        if (TextUtils.isEmpty(username)) {
-            eusername.setError("Please enter name");
-            return false;
-        }
-        if (TextUtils.isEmpty(email)) {
-            eemail.setError("please enter proper email");
-            return false;
-        }
-        if (TextUtils.isEmpty(password)) {
-            epassword.setError("please enter proper password");
-            return false;
-        }
-        return true;
-    }
-}
-```
-##### Database Structure
-```java
-Firestore/
-└── Tarot-Reading/
-└── Users/
-├── username: String
-├── email: String
-└── password: String
-```
-##### User Data Management
-```java
-private void SaveDataToNewDocument() {
-Map<String, Object> user = new HashMap<>();
-user.put("username", username);
-user.put("email", email);
-user.put("password", password);
-
-    collectionReference.add(user)
-        .addOnSuccessListener(documentReference -> {
-            String docId = documentReference.getId();
-        });
-}
-```
 ## Implementation Details
 
 ### Card Selection System
-The card selection system uses a custom view implementation:
 ```java
 public class CardPickView extends View {
     private List<Card> cardList;
@@ -230,80 +185,41 @@ public class CardPickView extends View {
     
     @Override
     protected void onDraw(Canvas canvas) {
-        // Custom drawing logic for card display
-    }
-    
-    private void handleCardSelection(float touchX, float touchY) {
-        // Card selection logic
+        // Card rendering logic
     }
 }
 ```
 
-### Question Processing Flow
-1. User inputs question in `QuestionActivity`
-2. Question analyzed by GPT-4 to determine spread type
-3. Spread type determines card selection interface
-4. Selected cards processed for interpretation
-
-### Spread Selection Logic
+### Authentication Flow
 ```java
-switch (spreadType.toLowerCase()) {
-    case "lovercross":
-        pickcard = 5;
-        break;
-    case "sixstars":
-        pickcard = 6;
-        cutcard = true;
-        break;
-    // ... other spread types
+private void SaveDataToNewDocument() {
+    Map<String, Object> user = new HashMap<>();
+    user.put("username", username);
+    user.put("email", email);
+    user.put("password", password);
+    
+    collectionReference.add(user)
+        .addOnSuccessListener(documentReference -> {
+            String docId = documentReference.getId();
+        });
 }
 ```
 
-## Flow Diagrams
+## Contributing
 
-### Main User Flow
-```
-User Input → Question Analysis → Spread Selection → Card Selection → Interpretation
-```
-
-### Card Selection Flow
-```
-Initialize Cards → Shuffle → Display → User Selection → Flip Animation → Position Cards
-```
-
-### AI Integration Flow
-```
-Question Input → GPT-4 Analysis → Spread Recommendation → Card Selection → 
-Interpretation Request → Display Results
-```
-
-## Core Components
-
-### CardPickView
-Custom view handling:
-- Card visualization
-- Touch interaction
-- Animation
-- State management
-
-### OpenAIHelper
-Manages:
-- API communication
-- Response parsing
-- Error handling
-- Interpretation generation
-
-### Question Processing
-Implements:
-- Input validation
-- Pattern recognition
-- Spread selection
-- Flow management
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
 ## License
 
-This project is licensed under the MIT License. See LICENSE.md for details.
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
 ## Support
 
-For support, please open an issue in the repository or contact the development team.
+For support, please:
+- Open an issue in the repository
+- Contact the development team at [support@tarotreading.com](mailto:support@tarotreading.com)
+- Check our [Documentation Wiki](https://github.com/yunxin119/TarotReading/wiki)
