@@ -1,14 +1,30 @@
-# TarotReading App
+# TarotReading AI
 
-A modern Android application that combines traditional tarot card reading with AI-powered interpretations using GPT-4. The app supports both digital card selection and physical card recognition through the device's camera.
+## Why we?
 
-<img width="200" alt="image" src="https://github.com/user-attachments/assets/e6d14616-6d2c-4f49-b03d-c0284b51c526">
-<img width="200" alt="image" src="https://github.com/user-attachments/assets/7ec814e1-e881-4f16-8c43-fbaee4b6692e">
-<img width="200" alt="image" src="https://github.com/user-attachments/assets/e584ecb9-7114-4955-8112-13e8e2ebdf83">
-<img width="200" alt="image" src="https://github.com/user-attachments/assets/70cdeb3d-b452-4ad9-8e6d-41217e97ba98">
+### Bridging Tradition and Technology
+TarotReading stands out in the market by solving critical problems in modern tarot reading:
+![image](https://github.com/user-attachments/assets/7a7ce178-1803-403f-ade4-0773ec9bcddc)
+![image](https://github.com/user-attachments/assets/a1d6a5f4-5529-4e09-a40b-c767045058d8)
+![image](https://github.com/user-attachments/assets/f819040d-a233-4dae-aa1b-19df33b8f708)
+![image](https://github.com/user-attachments/assets/c4bc2ec4-f142-46c7-92b0-0def538a3075)
+#### 🎯 Unique Market Position
+1. **First Physical Card Recognition App**
+   - Only app offering real-time tarot card detection
+   - Preserves the traditional tactile experience
+   - Bridges physical and digital realms
 
+2. **Intelligent Spread Selection**
+   - First app to analyze questions and recommend spreads
+   - Six specialized patterns for different life situations
+   - More accurate than one-size-fits-all approaches
+
+3. **Advanced AI Integration**
+   - Leverages GPT-4 for unmatched accuracy
+   - Context-aware interpretations
+   - Natural, spiritually-aligned responses
+     
 ## Table of Contents
-- [Overview](#overview)
 - [User Flow](#user-flow)
 - [Features](#features)
 - [Installation](#installation)
@@ -18,11 +34,6 @@ A modern Android application that combines traditional tarot card reading with A
 - [Implementation Details](#implementation-details)
 - [Contributing](#contributing)
 - [License](#license)
-- [Support](#support)
-
-## Overview
-
-TarotReading is a sophisticated Android application that merges traditional tarot reading practices with modern AI technology. The app provides users with both digital and physical card reading capabilities, powered by GPT-4 for intelligent interpretations.
 
 ## User Flow
 
@@ -83,36 +94,80 @@ flowchart TD
 
 ## Features
 
-### 1. Multiple Reading Methods
-- Digital card selection with intuitive UI
-- Physical card recognition using device camera
-- Various spread patterns:
-  - OneCard (Daily reading)
-  - TimeFlow (Past-Present-Future)
-  - LoverCross (Relationship analysis)
-  - SixStars (Comprehensive analysis)
-  - TwoSelection (Decision making)
-  - Marlboro (Situation development)
+### 1. Advanced Reading Methods
+- **Digital Selection**
+  - Intuitive card picking interface
+  - Smooth animations
+  - Randomized shuffling
 
-### 2. AI-Powered Interpretations
-- GPT-4 integration for accurate readings
-- Context-aware interpretations
-- Natural language processing
-- Personalized reading experiences
+- **Physical Card Recognition**
+  - Real-time card detection
+  - Support for multiple decks
+  - High accuracy recognition
 
-### 3. User Management
+### 2. Intelligent Spread Selection
+- **Question Analysis**
+  - Natural language processing
+  - Context understanding
+  - Spread recommendation
+
+- **Spread Types**
+  ```java
+  public enum SpreadType {
+      ONECARD,      // Quick insights
+      TIMEFLOW,     // Past-Present-Future
+      LOVERCROSS,   // Relationships
+      SIXSTARS,     // Complex situations
+      TWOSELECTION, // Decisions
+      MARLBORO      // Future paths
+  }
+  ```
+
+### 3. AI-Powered Interpretations
+- GPT-4 integration
+- Context-aware readings
+- Natural language responses
+- Personalized insights
+
+### 4. User Management
 - Secure authentication system
 - Profile management
 - Reading history
 - Password recovery
 - Email verification
 
-### 4. Technical Features
+### 5. Technical Features
 - Custom card visualization system
 - Real-time camera integration
 - Offline mode support
 - Secure API integration
 - Firebase Firestore backend
+  
+### 6. Key Innovations
+
+#### 1. Physical Card Integration
+```java
+// VisionAIHelper.java
+public class VisionAIHelper {
+    public Task<TarotCard> processImage(InputImage image) {
+        // Advanced card recognition
+        // Real-time processing
+        // High accuracy detection
+    }
+}
+```
+
+#### 2. Dynamic Spread Selection
+```java
+// TarotPromptBuilder.java
+public class TarotPromptBuilder {
+    public String buildPrompt(String question, List<Card> cards) {
+        // Intelligent spread matching
+        // Context analysis
+        // Personalized interpretation
+    }
+}
+```
 
 ## Installation
 
@@ -141,13 +196,32 @@ dependencies {
 
 ### Project Structure
 ```
-src/main/java/com/group5/tarotreading/
-├── activity/                    # Core Activities
-├── card/                        # Card Management
-├── question/                    # Question Processing
-├── result/                      # Result Display
-├── user/                        # User Management
-└── utils/                       # Utilities
+com.group5.tarotreading/
+├── AIAnswerActivity.java        # AI interpretation handling
+├── CameraActivity.java         # Camera integration
+├── MainActivity.java           # App entry point
+├── card/                       # Card Management
+│   ├── Card.java              # Card entity
+│   ├── CardPick.java          # Selection logic
+│   ├── CardPickActivity.java  # Selection UI
+│   └── CardPickView.java      # Custom view
+├── question/                   # Question Processing
+│   ├── AskFragment.java       # Question input
+│   ├── QuestionActivity.java  # Question handling
+│   └── TodayFragment.java     # Daily readings
+├── result/                    # Reading Results
+│   ├── AnswerPage.java       # Result display
+│   ├── AnswerPageViewModel.java
+│   ├── TarotPromptBuilder.java
+│   └── TarotResponse.java
+├── user/                      # User Management
+│   ├── ChangePasswordActivity.java
+│   ├── LoginActivity.java
+│   ├── RegisterActivity.java
+│   └── UserProfile.java
+└── utils/                     # Utilities
+    ├── OpenAIHelper.java     # GPT-4 integration
+    └── VisionAIHelper.java   # Image processing
 ```
 
 ### Core Components
@@ -217,9 +291,4 @@ private void SaveDataToNewDocument() {
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
-## Support
 
-For support, please:
-- Open an issue in the repository
-- Contact the development team at [support@tarotreading.com](mailto:support@tarotreading.com)
-- Check our [Documentation Wiki](https://github.com/yunxin119/TarotReading/wiki)
