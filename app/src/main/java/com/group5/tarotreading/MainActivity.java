@@ -21,13 +21,17 @@ import com.group5.tarotreading.user.UserProfile;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Navigation Fragments
     private Fragment todayFragment;
     private Fragment askFragment;
     private FragmentManager fragmentManager;
     private int currentFragmentIndex = 0;
-    Button cameraButton;
 
+    // Navbar
+    Button cameraButton;
     Button eregister, logout;
+
+    // background
     ImageView imageView;
 
     @SuppressLint("MissingInflatedId")
@@ -36,23 +40,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Fragments, set today's fortune fragment as default
         todayFragment = new TodayFragment();
         askFragment = new AskFragment();
         fragmentManager = getSupportFragmentManager();
-
         fragmentManager.beginTransaction().replace(R.id.fragmentContainer, todayFragment).commit();
 
+        // Navbar
         cameraButton = findViewById(R.id.camera_button);
         eregister = findViewById(R.id.register);
-
         logout = findViewById(R.id.logout);
+
         imageView = findViewById(R.id.imageView);
         imageView.setZ(-1);
 
-        // Check login status
+        // Check login status for different user icon feature
         SharedPreferences preferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
         boolean isLoggedIn = preferences.getBoolean("isLoggedIn", false);
-
 
         // Set up left and right buttons for fragment switching
         Button leftButton = findViewById(R.id.leftButton);
@@ -67,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Register button click listener
+        // UserIcon button click listener
+        // If user is logged in, direct to profile, otherwise direct to login page
         eregister.setOnClickListener(v -> {
             if (isLoggedIn) {
                 Intent myIntent = new Intent(MainActivity.this, UserProfile.class);
@@ -78,8 +83,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        // Logout button click listener
+        // Logout button click listener: only showup when user is logged in
         logout.setOnClickListener(v -> {
             SharedPreferences.Editor editor = preferences.edit();
             editor.putBoolean("isLoggedIn", false);
@@ -87,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
             logout.setVisibility(View.GONE);
         });
 
-        // Handle window insets for better layout control
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -96,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // Direct back to previous fragment by keep track of current Fragment Index
+    // If already the first fragment, clicking on this button will not cause any changes
     private void showPreviousFragment() {
         if (currentFragmentIndex == 1) {
             fragmentManager.beginTransaction()
@@ -106,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Similar logic, direct to next fragment by keep track of the fragment index
     private void showNextFragment() {
         if (currentFragmentIndex == 0) {
             fragmentManager.beginTransaction()

@@ -19,6 +19,7 @@ public class AskFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_ask, container, false);
 
         Button askButton = view.findViewById(R.id.askquestion);
+        // Simply direct to question activity
         askButton.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), QuestionActivity.class);
             startActivity(intent);

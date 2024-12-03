@@ -47,13 +47,13 @@ public class QuestionActivity extends AppCompatActivity {
         back = findViewById(R.id.back);
         ask = findViewById(R.id.ask);
 
-        // Elements for popout instruction
+        // Elements for pop out instruction: initially set to invisible
         popoutInstruction = findViewById(R.id.popoutInstruction);
         questionInstruction = findViewById(R.id.questionInstruction);
         questionInstruction.setVisibility(View.GONE);
         closeIcon = findViewById(R.id.closeIcon);
 
-        // Button container for popping out button feature
+        // Button container for popping out button feature, initially set to invisible
         buttonContainer = findViewById(R.id.buttonContainer);
         buttonContainer.setVisibility(View.GONE);
 
@@ -90,7 +90,7 @@ public class QuestionActivity extends AppCompatActivity {
             }
         });
 
-
+        // back to home screen
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,6 +99,7 @@ public class QuestionActivity extends AppCompatActivity {
             }
         });
 
+        // Click on the pop out instruction hint will trigger the questionInstruction to become visible
         popoutInstruction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,6 +117,7 @@ public class QuestionActivity extends AppCompatActivity {
             }
         });
 
+        // set the pop out instruction back to invisible
         closeIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,6 +133,7 @@ public class QuestionActivity extends AppCompatActivity {
     }
 
 
+    // dynamically create a proceed button to pass different spreadtype value to next screen
     void createProceedButton(String spreadType) {
         Button nextButton = new Button(QuestionActivity.this);
         String spreadTypeFormatted = spreadType.toLowerCase();
@@ -154,7 +157,7 @@ public class QuestionActivity extends AppCompatActivity {
         buttonLayoutParams.gravity = Gravity.CENTER;
         nextButton.setLayoutParams(buttonLayoutParams);
 
-        // Proceed to next screen when clicking on the nextButton
+        // Onclick logic for the nextButton, it take the response from the AI and set the text as the response
         nextButton.setOnClickListener(view -> {
             Intent intent = new Intent(QuestionActivity.this, CardPickActivity.class);
             // Put extra info to next intent
@@ -213,7 +216,6 @@ public class QuestionActivity extends AppCompatActivity {
         nextButton.bringToFront();
         buttonContainer.setClickable(true);
         buttonContainer.setFocusable(true);
-
     }
 }
 

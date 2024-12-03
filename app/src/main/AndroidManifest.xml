@@ -44,7 +44,6 @@
         </activity>
         <activity android:name=".user.RegisterActivity" />
         <activity android:name=".user.LoginActivity" />
-        <activity android:name=".AIAnswerActivity" />
         <activity android:name=".user.ChangePasswordActivity" />
         <activity android:name=".result.AnswerPage" />
     </application>
