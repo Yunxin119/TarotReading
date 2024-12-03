@@ -20,6 +20,7 @@ public class TodayFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_today, container, false);
 
         Button todayButton = view.findViewById(R.id.today);
+        // Set onclick listener, pass required value like spreadtype, question, num of cards to card picking screen
         todayButton.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), CardPickActivity.class);
             intent.putExtra("spreadType", "OneCard");

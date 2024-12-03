@@ -62,15 +62,15 @@
         android:layout_marginTop="24dp" />
 
     <!-- Tarot Reading History Button -->
-    <Button
-        android:id="@+id/tarot_history_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tarot Reading History"
-        app:layout_constraintTop_toBottomOf="@id/change_password_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+<!--    <Button-->
+<!--        android:id="@+id/tarot_history_button"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Tarot Reading History"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/change_password_button"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        android:layout_marginTop="16dp" />-->
 
     <!-- Logout Button -->
     <Button
@@ -78,10 +78,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Logout"
-        app:layout_constraintTop_toBottomOf="@id/tarot_history_button"
+        app:layout_constraintTop_toBottomOf="@id/change_password_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/red" />
+
+    <ImageView
+        android:id="@+id/home_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_home_foreground"
+        app:layout_constraintTop_toBottomOf="@+id/logout_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        app:tint="@color/primary" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.group5.tarotreading.user;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -7,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.Manifest;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,6 +22,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.group5.tarotreading.MainActivity;
 import com.group5.tarotreading.R;
 
 public class UserProfile extends AppCompatActivity {
@@ -27,8 +30,10 @@ public class UserProfile extends AppCompatActivity {
     private String userId;
     private ImageView profileImage;
     private TextView userName, userEmail;
+    private ImageView homeButton;
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,11 +49,12 @@ public class UserProfile extends AppCompatActivity {
             return insets;
         });
 
+        homeButton = findViewById(R.id.home_button);
         profileImage = findViewById(R.id.profile_image);
         userName = findViewById(R.id.user_name);
         userEmail = findViewById(R.id.user_email);
         Button changePasswordButton = findViewById(R.id.change_password_button);
-        Button tarotHistoryButton = findViewById(R.id.tarot_history_button);
+//        Button tarotHistoryButton = findViewById(R.id.tarot_history_button);
         Button logoutButton = findViewById(R.id.logout_button);
 
         Intent intent = getIntent();
@@ -73,6 +79,14 @@ public class UserProfile extends AppCompatActivity {
 //            startActivity(new Intent(UserProfile.this, TarotHistoryActivity.class));
 //        });
 
+
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =  new Intent(UserProfile.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
         // Handle logout action
         logoutButton.setOnClickListener(v -> {
             SharedPreferences.Editor editor = preferences.edit();

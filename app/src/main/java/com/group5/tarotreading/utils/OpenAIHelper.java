@@ -64,7 +64,7 @@ public class OpenAIHelper {
                         try {
                             String resultText = response.getJSONArray("choices")
                                     .getJSONObject(0)
-                                    .getJSONObject("message")  // Corrected to handle chat completions
+                                    .getJSONObject("message")
                                     .getString("content");
 
                             // Pass the result to the listener.
@@ -117,7 +117,7 @@ public class OpenAIHelper {
 
             @Override
             public void retry(VolleyError error) throws VolleyError {
-                // Implement retry behavior if needed.
+                // Implement retry behavior if needed. (now not implementing this)
             }
         });
 
