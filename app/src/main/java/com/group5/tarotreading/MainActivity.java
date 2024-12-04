@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Navbar
     Button cameraButton;
-    Button eregister, logout;
+    Button eregister;
 
     // background
     ImageView imageView;
@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         // Navbar
         cameraButton = findViewById(R.id.camera_button);
         eregister = findViewById(R.id.register);
-        logout = findViewById(R.id.logout);
 
         imageView = findViewById(R.id.imageView);
         imageView.setZ(-1);
@@ -76,19 +75,14 @@ public class MainActivity extends AppCompatActivity {
         eregister.setOnClickListener(v -> {
             if (isLoggedIn) {
                 Intent myIntent = new Intent(MainActivity.this, UserProfile.class);
+                myIntent.putExtra("username", preferences.getString("username", ""));
+                myIntent.putExtra("email", preferences.getString("email", ""));
+                myIntent.putExtra("userId", preferences.getString("userId", ""));
                 MainActivity.this.startActivity(myIntent);
             } else {
                 Intent myIntent = new Intent(MainActivity.this, LoginActivity.class);
                 MainActivity.this.startActivity(myIntent);
             }
-        });
-
-        // Logout button click listener: only showup when user is logged in
-        logout.setOnClickListener(v -> {
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putBoolean("isLoggedIn", false);
-            editor.apply();
-            logout.setVisibility(View.GONE);
         });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
