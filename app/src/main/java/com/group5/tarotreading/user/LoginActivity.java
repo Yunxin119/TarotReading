@@ -12,40 +12,38 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.group5.tarotreading.MainActivity;
 import com.group5.tarotreading.R;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 
 public class LoginActivity extends AppCompatActivity {
     EditText username, password;
     Button eregister, elogin, home;
     private TextView textView;
-
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-    private CollectionReference collectionReference = db.collection("Tarot-Reading");
-
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Initialize Firebase Auth and Firestore
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+
+        // Initialize views
         eregister = findViewById(R.id.register);
         elogin = findViewById(R.id.login);
         home = findViewById(R.id.home);
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
 
+        // Handle incoming intent data
         Intent i = getIntent();
         String a = i.getStringExtra("number1");
         String b = i.getStringExtra("number2");
@@ -58,41 +56,28 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         // Register button click listener
-        eregister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent in = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(in);
-            }
+        eregister.setOnClickListener(view -> {
+            Intent in = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(in);
         });
 
         // Login button click listener
-        elogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String enteredUsername = username.getText().toString().trim();
-                String enteredPassword = password.getText().toString().trim();
-
-                // Call the modified validateLogin method
-                validateLogin(enteredUsername, enteredPassword);
-            }
+        elogin.setOnClickListener(view -> {
+            String email = username.getText().toString().trim();
+            String userPassword = password.getText().toString().trim();
+            validateLogin(email, userPassword);
         });
 
-        // home button
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
+        // Home button click listener
+        home.setOnClickListener(view -> {
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
         });
-
     }
 
-    // Method to validate login credentials
-    private void validateLogin(final String username, final String password) {
-        if (username.isEmpty()) {
-            this.username.setError("Username cannot be empty");
+    private void validateLogin(String email, String password) {
+        if (email.isEmpty()) {
+            username.setError("Email cannot be empty");
             return;
         }
         if (password.isEmpty()) {
@@ -100,44 +85,58 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        collectionReference.whereEqualTo("email", username)
-                .whereEqualTo("password", password)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                // login successfully
-                                // should return here
-                                String email = document.getString("email");
-                                String name = document.getString("username");
-                                String userId = document.getId();
+        // Sign in with Firebase Auth
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // Sign in success
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        if (user != null) {
+                            // Get additional user data from Firestore
+                            db.collection("Tarot-Reading")
+                                    .document(user.getUid())
+                                    .get()
+                                    .addOnSuccessListener(document -> {
+                                        if (document.exists()) {
+                                            String username = document.getString("username");
+                                            String userEmail = document.getString("email");
+                                            String userId = user.getUid();
 
-                                Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
+                                            // Save user data to SharedPreferences
+                                            SharedPreferences preferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+                                            SharedPreferences.Editor editor = preferences.edit();
+                                            editor.putBoolean("isLoggedIn", true);
+                                            editor.putString("username", username);
+                                            editor.putString("email", userEmail);
+                                            editor.putString("userId", userId);
+                                            editor.apply();
 
-                                SharedPreferences preferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-                                SharedPreferences.Editor editor = preferences.edit();
-                                editor.putBoolean("isLoggedIn", true);
-                                editor.putString("username", name);
-                                editor.putString("email", email);
-                                editor.putString("userId", userId);
-                                editor.apply();
+                                            // Show success message
+                                            Toast.makeText(LoginActivity.this, "Login Successful!",
+                                                    Toast.LENGTH_SHORT).show();
 
-                                Intent in = new Intent(LoginActivity.this, UserProfile.class);
-                                in.putExtra("username", name);
-                                in.putExtra("email", email);
-                                in.putExtra("userId", userId);
-                                startActivity(in);
-                                finish();
-                            }
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                            Toast.makeText(LoginActivity.this, "Can't find the email or password!", Toast.LENGTH_SHORT).show();
+                                            // Navigate to UserProfile
+                                            Intent intent = new Intent(LoginActivity.this, UserProfile.class);
+                                            intent.putExtra("username", username);
+                                            intent.putExtra("email", userEmail);
+                                            intent.putExtra("userId", userId);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        Log.w(TAG, "Error getting user data", e);
+                                        Toast.makeText(LoginActivity.this,
+                                                "Error retrieving user data", Toast.LENGTH_SHORT).show();
+                                    });
                         }
+                    } else {
+                        // If sign in fails, display a message to the user
+                        Log.w(TAG, "signInWithEmail:failure", task.getException());
+                        Toast.makeText(LoginActivity.this,
+                                "Authentication failed: Invalid email or password",
+                                Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 }
-
