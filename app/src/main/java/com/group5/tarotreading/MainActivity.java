@@ -66,8 +66,13 @@ public class MainActivity extends AppCompatActivity {
 
         // Camera button click listener
         cameraButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, CameraActivity.class);
-            startActivity(intent);
+            if (!isLoggedIn) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(MainActivity.this, CameraActivity.class);
+                startActivity(intent);
+            }
         });
 
         // UserIcon button click listener
