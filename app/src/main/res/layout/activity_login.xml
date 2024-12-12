@@ -71,7 +71,7 @@
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/forget"
+        android:layout_below="@+id/password"
         android:textSize="30dp"
         android:fontFamily="@font/satisfyregular"
         android:layout_centerHorizontal="true"
@@ -79,19 +79,6 @@
         android:padding="@android:dimen/app_icon_size"
         android:backgroundTint="@android:color/transparent"
         android:text="Login" />
-
-    <TextView
-        android:id="@+id/forget"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/password"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
-        android:textColor="@color/hint"
-        android:text="Forget Password?" />
 
     <Button
         android:id="@+id/register"

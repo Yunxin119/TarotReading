@@ -12,5 +12,6 @@
         android:textSize="30dp"
         android:text="Today's Fortune"
         android:background="@drawable/today"
-        android:backgroundTint="@null" />
+        android:backgroundTintMode="src_in"
+        android:backgroundTint="@android:color/transparent" />
 </LinearLayout>

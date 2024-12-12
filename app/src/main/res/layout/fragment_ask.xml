@@ -12,5 +12,6 @@
         android:text="Ask"
         android:textSize="30dp"
         android:background="@drawable/ask"
-        android:backgroundTint="@null" />
+        android:backgroundTintMode="src_in"
+        android:backgroundTint="@android:color/transparent" />
 </LinearLayout>

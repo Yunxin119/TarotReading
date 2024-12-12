@@ -3,5 +3,9 @@
     <style name="Base.Theme.TarotReading" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorButtonNormal">@color/primary</item>
     </style>
+
+    <style name="Theme.TarotReading" parent="Base.Theme.TarotReading" />
 </resources>
